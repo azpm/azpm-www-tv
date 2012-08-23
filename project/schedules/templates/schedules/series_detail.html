@@ -1,0 +1,56 @@
+{% extends "schedules/base.html" %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumbs">
+    <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
+    <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
+    <li class="last"><a href="{% url series-by-nola base_series.nola %}" title="{{ base_series.name.strip }}">{{ base_series.name.strip }}</a></li>
+</ul>
+{% endblock %}
+
+{% block zone_one %}
+<div class="namedbox first-box">
+    <h1 class="boxtop bt-blue">Series Guide</h1>
+    {% for item in items %}
+        {% with item.series as series %}
+        <h2>scheduled episodes of {{ series.name.strip }}</h2>
+        <table class="airing-table bordered-table zebra-table">
+            <thead><tr>
+                <th class="channel-id">channel</th>
+                <th class="date-info">date</th>
+                <th class="time-info">time</th>
+                <th class="episode-id">episode</th>
+            </tr></thead>{% for air in item.airing %}
+            <tr>
+                <td>{{ air.service.name }}</td>
+                <td>{{ air.date|date:"M jS" }}</td>
+                <td>{{ air.time|time:"P" }}</td>
+                <td><a href="{% url episode-detail air.airing_id %}">{% if air.airing.name %}{{ air.airing.name }}{% else %}Episode {{ air.airing.number }} of {{ air.airing.season.total }}{% endif %}</a></td>
+            </tr>   
+            {% endfor %}
+        </table>
+        {% endwith %}
+    {% empty %}
+        <span class="ep-header">There are no scheduled episodes of <em>{{ base_series.name.strip }}</em></span><br />
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block zone_two %}
+<div class="namedbox first-box">
+    <h1 class="boxtop bt-blue">Series Information</h1>{% for item in items %}
+        {% with item.series as series %}
+        <span class="series-name">{{ series.name.strip }}</span><br /><br/>
+        <span class="series-descrip">{{ series.description.strip }}</span>
+        <br />
+        {% endwith %}
+    {% endfor %}
+</div>{% if underwriting_spotlets %}
+<div class="namedbox">
+    <h1 class="boxtop bt-blue">Support Comes From</h1>
+    {% for spot in underwriting_spotlets %}
+    <a href="{{ spot.myurl }}" ><img src="{{ spot.image.url }}" alt="{{ spot.underwriter }}"/></a>
+    <hr size="6" color="gray" style="margin:0px;" />
+    {% endfor %}
+</div>{% endif %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "schedules/base.html" %}
+
+{% load scheduling %}
+
+{% block extra_script %}
+{{ block.super }}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumbs">
+    <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
+    <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
+    <li class="last"><a href="{% url channel-today service.keyname %}" title="{{ channel.name }}">{{ service.name }}</a></li>
+</ul>
+{% endblock %}
+
+{% block zone_one %}
+{% include "schedules/channel_nav.html" %}
+<div class="namedbox">
+    <h1 class="boxtop bt-blue">{{ service.name }}</h1>
+    <h3 class="schedules-date">{{ idealised_day|date:"l, F j, Y" }}</h3>
+    <table class="airing-table bordered-table zebra-table">
+        <thead><tr>
+            <th>Time</th>
+            <th>Show</th>
+        </tr></thead>{% for air in airing %}{% with episode=air.airing %}
+        <tr>
+            <td class="show-airtime">{{ air.time|time:"f a" }}</td>
+            <td class="show-info">
+                <span class="show-title"><a name="{{ air.time|time:'f.a' }}" href="{% url episode-detail episode.id %}">{{ episode.series.name.strip }}</a></span>
+                {% if episode.name %}<br />{{ episode.name }}{% endif %}
+            </td>
+        </tr>{% endwith %}{% endfor %}
+     </table>
+</div>
+{% endblock %}
+
+{% block zone_two %}
+{{ block.super }}
+<div class="namedbox" id="tv-schedules-calendars">
+    <h1 class="boxtop bt-grey">Schedule Calendar</h1>
+    {% include "schedules/channel_calendar.html" %}
+</div>{% if underwriting_spotlets %}
+<div class="namedbox">
+    <h1 class="boxtop bt-red">Support Comes From</h1>
+    {% for spot in underwriting_spotlets %}
+    <a href="{{ spot.myurl }}" ><img src="{{ spot.image.url }}" alt="{{ spot.underwriter }}"/></a>
+    <hr size="6" color="gray" style="margin:0px;" />
+    {% endfor %}
+</div>{% endif %}
+{% endblock %}

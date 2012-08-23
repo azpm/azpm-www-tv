@@ -1,0 +1,17 @@
+{% load scheduling %}
+{% for block in calendars %}
+<table class="schedule-calendar">
+    <tr>
+        <td class="calendar-month" colspan="8">{{ block.day|date:"F, Y" }}</td>
+    </tr>
+    <tr class="weekdays">
+        <td>wk.</td><td>s</td><td>m</td><td>t</td><td>w</td><td>t</td><td>f</td><td>s</td>
+    </tr>{% for weeks in block.calendar %}{% ifequal weeks week %}
+    <tr class="calendar-selected-week">{% else %}<tr class="calendar-week">{% endifequal %}
+        <td class="week-select">{% if weeks.0 <= max_days %}<a href="{% url channel-week-glance service.keyname,weeks.0.year,weeks.0.month,weeks.0.day %}" class="web-symbol" title="Week at Glance">²</a>{% endif %}</td>{% for day in weeks %}
+            <td class="{% proper_td_class block day idealised_day %}">{% ifequal day.month block.day.month %}{% if day <= max_days %}
+                    <a href="{% url channel-date service.keyname,day.year,day.month,day.day %}">{{ day|date:"j" }}</a>{% else %}
+                    {{ day|date:"j" }}{% endif %}{% else %}&nbsp;{% endifequal %}
+            </td>{% endfor %}
+    </tr>{% endfor %}
+</table>{% endfor %}

@@ -1,0 +1,16 @@
+			<styleRun style="10050" offset="0" length="{{data.1.title_object|length}}"/>
+			<text>{{data.1.entry.episode.season.series.name}}</text>{% for title_ord in data.1.title_object %}
+            <object value="{{title_ord}}"/>{% endfor %}
+           
+			<styleRun style="10045" offset="0" length="{{data.0.title_object|length}}"/>
+			<text>{{data.0.entry.episode.season.series.name}}</text>{% for title_ord in data.0.title_object %}
+            <object value="{{title_ord}}"/>{% endfor %}
+
+			<styleRun style="10040" offset="0" length="{{ data.1.time_object|length }}"/>
+			<text>{{ data.1.time_string }}</text>{% for time_ord in data.1.time_object %}
+            <object value="{{time_ord}}"/>{% endfor %}
+		
+			<styleRun style="10034" offset="0" length="{{ data.0.time_object|length }}"/>
+			<text>{{ data.0.time_string }}</text>{% for time_ord in data.0.time_object %}
+            <object value="{{time_ord}}"/>{% endfor %}
+			

@@ -1,0 +1,7 @@
+<div class="namedbox first-box" id="tv-schedules-channav">
+    <div id="channel-links">
+		{% for l_service in services %}
+        <a {% ifequal l_service.keyname service.keyname %}class="active-channel"{% endifequal %} href="{% url channel-today l_service.keyname %}">{{ l_service.name }}</a>
+        {% endfor %}
+    </div>
+</div>
