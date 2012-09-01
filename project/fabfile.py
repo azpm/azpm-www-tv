@@ -18,7 +18,7 @@ def restart_site():
     with cd(working_dir):
         run("touch run.wsgi")
 
-def load_config():
+def load_config(mode="production"):
     working_dir = '/srv/vhosts/'
     with cd(working_dir):
-        run("cp settings-configs/production/tv/local_settings.py tv/project/")
+        run("cp deployment/{0:>s}/tv/local_settings.py tv/project/".format(mode))
