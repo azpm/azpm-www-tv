@@ -3,3 +3,7 @@
 *.pyc
 local_settings.py
 .DS_Store
+
+logs/debug.log.2012-09-06
+
+logs/debug.log.2012-09-14
