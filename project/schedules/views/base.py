@@ -537,7 +537,10 @@ class API(TemplateView):
         return super(API, self).get(request, *args, **kwargs)
 
     def render_to_response(self, context, **response_kwargs):
-        response_kwargs.update({'mimetype': 'text/xml'})
+        if self.tpl == "base.htm":
+            response_kwargs.update({'mimetype': 'text/plain'})
+        else:
+            response_kwargs.update({'mimetype': 'text/xml'})
         return super(API, self).render_to_response(context, **response_kwargs)
 
     def get_context_data(self, **kwargs):
@@ -581,7 +584,7 @@ class API(TemplateView):
                     today_1 = today_airs.filter(date=self.the_date, time__gte= airing_now.latest('time').time).order_by('date','time')
                     today_2 = today_airs.filter(date=self.the_date + timedelta(days=1)).order_by('date','time')
                     today = today_1 | today_2
-                    today = today[:2]
+                    today = today[:4]
 
                     if today[0]:
                         this_service.append({'entry':{'episode':{'season':{'series':{'name':today[0].airing.series.name}}}},'title_object':[ord(today[0].airing.series.name[i].decode('U8')) for i in range(0, len(today[0].airing.series.name))],'time_object':[ord(today[0].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[0].time.strftime("%l:%M %p")))],'time_string':today[0].time.strftime("%l:%M %p")})
@@ -591,7 +594,17 @@ class API(TemplateView):
                     if today[1]:
                         this_service.append({'entry':{'episode':{'season':{'series':{'name':today[1].airing.series.name}}}},'title_object':[ord(today[1].airing.series.name[i].decode('U8')) for i in range(0, len(today[1].airing.series.name))],'time_object':[ord(today[1].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[1].time.strftime("%l:%M %p")))],'time_string':today[1].time.strftime("%l:%M %p")})
                     else:
-                        if len(this_service) < 2:
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+
+                    if today[2]:
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[2].airing.series.name}}}},'title_object':[ord(today[2].airing.series.name[i].decode('U8')) for i in range(0, len(today[2].airing.series.name))],'time_object':[ord(today[2].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[2].time.strftime("%l:%M %p")))],'time_string':today[2].time.strftime("%l:%M %p")})
+                    else:
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+
+                    if today[3]:
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[3].airing.series.name}}}},'title_object':[ord(today[3].airing.series.name[i].decode('U8')) for i in range(0, len(today[3].airing.series.name))],'time_object':[ord(today[3].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[3].time.strftime("%l:%M %p")))],'time_string':today[3].time.strftime("%l:%M %p")})
+                    else:
+                        if len(this_service) < 4:
                             this_service.append({'filler' : "filler"})
 
                 except Exception:
@@ -636,6 +649,9 @@ class API(TemplateView):
         return c
 
     def get_template_names(self):
+        if self.tpl == "base.htm":
+            return "schedules/api/%s" % self.tpl
+
         tpl_arg = self.tpl
         tpl_arg += str(randint(1,6))
         tpl_arg += '.motn'
