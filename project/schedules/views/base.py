@@ -587,29 +587,29 @@ class API(TemplateView):
                     today = today[:4]
 
                     if today[0]:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[0].airing.series.name}}}},'title_object':[ord(today[0].airing.series.name[i].decode('U8')) for i in range(0, len(today[0].airing.series.name))],'time_object':[ord(today[0].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[0].time.strftime("%l:%M %p")))],'time_string':today[0].time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[0].airing.series.name}}}},'title_object':[ord(today[0].airing.series.name[i].decode('U8')) for i in range(0, len(today[0].airing.series.name))],'time_object':[ord(today[0].time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(today[0].time.strftime("%l:%M %p").lstrip()))],'time_string':today[0].time.strftime("%l:%M %p").lstrip()})
                     else:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p").lstrip()))],'time_string':self.the_time.strftime("%l:%M %p").lstrip()})
 
                     if today[1]:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[1].airing.series.name}}}},'title_object':[ord(today[1].airing.series.name[i].decode('U8')) for i in range(0, len(today[1].airing.series.name))],'time_object':[ord(today[1].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[1].time.strftime("%l:%M %p")))],'time_string':today[1].time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[1].airing.series.name}}}},'title_object':[ord(today[1].airing.series.name[i].decode('U8')) for i in range(0, len(today[1].airing.series.name))],'time_object':[ord(today[1].time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(today[1].time.strftime("%l:%M %p").lstrip()))],'time_string':today[1].time.strftime("%l:%M %p").lstrip()})
                     else:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p").lstrip()))],'time_string':self.the_time.strftime("%l:%M %p").lstrip()})
 
                     if today[2]:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[2].airing.series.name}}}},'title_object':[ord(today[2].airing.series.name[i].decode('U8')) for i in range(0, len(today[2].airing.series.name))],'time_object':[ord(today[2].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[2].time.strftime("%l:%M %p")))],'time_string':today[2].time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[2].airing.series.name}}}},'title_object':[ord(today[2].airing.series.name[i].decode('U8')) for i in range(0, len(today[2].airing.series.name))],'time_object':[ord(today[2].time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(today[2].time.strftime("%l:%M %p").lstrip()))],'time_string':today[2].time.strftime("%l:%M %p").lstrip()})
                     else:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p").lstrip()))],'time_string':self.the_time.strftime("%l:%M %p").lstrip()})
 
                     if today[3]:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[3].airing.series.name}}}},'title_object':[ord(today[3].airing.series.name[i].decode('U8')) for i in range(0, len(today[3].airing.series.name))],'time_object':[ord(today[3].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(today[3].time.strftime("%l:%M %p")))],'time_string':today[3].time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':today[3].airing.series.name}}}},'title_object':[ord(today[3].airing.series.name[i].decode('U8')) for i in range(0, len(today[3].airing.series.name))],'time_object':[ord(today[3].time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(today[3].time.strftime("%l:%M %p").lstrip()))],'time_string':today[3].time.strftime("%l:%M %p").lstrip()})
                     else:
                         if len(this_service) < 4:
                             this_service.append({'filler' : "filler"})
 
                 except Exception:
 
-                    this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+                    this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p").lstrip()))],'time_string':self.the_time.strftime("%l:%M %p").lstrip()})
                     this_service.append({'filler' : "filler"})
 
 
@@ -621,19 +621,19 @@ class API(TemplateView):
                     tomorrow = tomorrow[:2]
 
                     if tomorrow[0]:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':tomorrow[0].airing.series.name}}}},'title_object':[ord(tomorrow[0].airing.series.name[i].decode('U8')) for i in range(0, len(tomorrow[0].airing.series.name))],'time_object':[ord(tomorrow[0].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(tomorrow[0].time.strftime("%l:%M %p")))],'time_string':tomorrow[0].time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':tomorrow[0].airing.series.name}}}},'title_object':[ord(tomorrow[0].airing.series.name[i].decode('U8')) for i in range(0, len(tomorrow[0].airing.series.name))],'time_object':[ord(tomorrow[0].time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(tomorrow[0].time.strftime("%l:%M %p").lstrip()))],'time_string':tomorrow[0].time.strftime("%l:%M %p").lstrip()})
                     else:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p").lstrip()))],'time_string':self.the_time.strftime("%l:%M %p").lstrip()})
 
                     if tomorrow[1]:
-                        this_service.append({'entry':{'episode':{'season':{'series':{'name':tomorrow[1].airing.series.name}}}},'title_object':[ord(tomorrow[1].airing.series.name[i].decode('U8')) for i in range(0, len(tomorrow[1].airing.series.name))],'time_object':[ord(tomorrow[1].time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(tomorrow[1].time.strftime("%l:%M %p")))],'time_string':tomorrow[1].time.strftime("%l:%M %p")})
+                        this_service.append({'entry':{'episode':{'season':{'series':{'name':tomorrow[1].airing.series.name}}}},'title_object':[ord(tomorrow[1].airing.series.name[i].decode('U8')) for i in range(0, len(tomorrow[1].airing.series.name))],'time_object':[ord(tomorrow[1].time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(tomorrow[1].time.strftime("%l:%M %p").lstrip()))],'time_string':tomorrow[1].time.strftime("%l:%M %p").lstrip()})
                     else:
                         if len(this_service) < 2:
                             this_service.append({'filler' : "filler"})
 
                 except Exception:
 
-                    this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p")[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p")))],'time_string':self.the_time.strftime("%l:%M %p")})
+                    this_service.append({'entry':{'episode':{'season':{'series':{'name':"See website"}}}},"title_object":[ord('See website'[i].decode('U8')) for i in range(0, len('See website'))],'time_object':[ord(self.the_time.strftime("%l:%M %p").lstrip()[i].decode('U8')) for i in range(0, len(self.the_time.strftime("%l:%M %p").lstrip()))],'time_string':self.the_time.strftime("%l:%M %p").lstrip()})
                     this_service.append({'filler' : "filler"})
 
 
