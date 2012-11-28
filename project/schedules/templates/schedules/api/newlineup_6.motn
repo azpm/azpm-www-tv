@@ -48356,8 +48356,8 @@
 
 	<footage name="Media Layer" id="10004">
 		<clip name="LINEUPMUSIC_1" id="17961">
-			<pathURL>file://localhost/Volumes/Phoenix/Promotions/PROMO%20PROJECTS/LINEUPBILLBOARDS%200610/LINEUPSWMUSIC_0712/LINEUPMUSIC_1.mov</pathURL>
-			<relativeURL>../LINEUPSWMUSIC_0712/LINEUPMUSIC_1.mov</relativeURL>
+			<pathURL>file://localhost/Volumes/Phoenix/Promotions/PROMO%20PROJECTS/LINEUPBILLBOARDS%200610/LINEUPSWMUSIC_0712/LINEUPMUSIC_6.mov</pathURL>
+			<relativeURL>../LINEUPSWMUSIC_0712/LINEUPMUSIC_6.mov</relativeURL>
 			<missingWidth>1920</missingWidth>
 			<missingHeight>1080</missingHeight>
 			<missingDuration>30.03003003003003</missingDuration>
