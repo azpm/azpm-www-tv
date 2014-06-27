@@ -43,12 +43,21 @@
 <div class="namedbox" id="tv-schedules-calendars">
     <h1 class="boxtop bt-grey">Schedule Calendar</h1>
     {% include "schedules/channel_calendar.html" %}
-</div>{% if underwriting_spotlets %}
-<div class="namedbox">
+</div>
+
+{% if underwriting_spotlets %}
+    <div class="namedbox">
+        <h1 class="boxtop bt-red">Support Comes From</h1>
+        {% for spot in underwriting_spotlets %}
+            <a href="{{ spot.myurl }}" ><img src="{{ spot.image.url }}" alt="{{ spot.underwriter }}"/></a>
+            <hr size="6" color="gray" style="margin:0px;" />
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div id="underwriters" class="namedbox">
     <h1 class="boxtop bt-red">Support Comes From</h1>
-    {% for spot in underwriting_spotlets %}
-    <a href="{{ spot.myurl }}" ><img src="{{ spot.image.url }}" alt="{{ spot.underwriter }}"/></a>
-    <hr size="6" color="gray" style="margin:0px;" />
-    {% endfor %}
-</div>{% endif %}
+    <a target="_blank" href="http://rescorp.org/"><img width="294" alt="Research Corporation for Science Advancement" src="https://media.azpm.org/master/img/uw/2014/06/research-corporation-underwriting_10.png"></a>
+    <br>
+</div>
 {% endblock %}
