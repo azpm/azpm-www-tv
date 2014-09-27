@@ -63,7 +63,7 @@
 {% if field.field.required %}<strong>{% endif %}{{  field.label_tag }}{% if field.field.required %}</strong>{% endif %}&nbsp;{{ field }}
 {% endfor %}
 <input type="submit" name="submit" value="submit"/>
-<a href="{% url schedules-index %}">Return to Schedules</a>
+<a href="{% url 'schedules-index' %}">Return to Schedules</a>
 </form>
 {% if results %}
 <h1>{{ results.service.name }}</h1>

@@ -13,7 +13,7 @@
 <ul class="breadcrumbs">
     <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
     <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
-    <li class="last"><a href="{% url channel-today service.keyname %}" title="{{ channel.name }}">{{ service.name }}</a></li>
+    <li class="last"><a href="{% url 'channel-today' service.keyname %}" title="{{ channel.name }}">{{ service.name }}</a></li>
 </ul>
 {% endblock %}
 
@@ -30,7 +30,7 @@
         <tr>
             <td class="show-airtime">{{ air.time|time:"f a" }}</td>
             <td class="show-info">
-                <span class="show-title"><a name="{{ air.time|time:'f.a' }}" href="{% url episode-detail episode.id %}">{{ episode.series.name.strip }}</a></span>
+                <span class="show-title"><a name="{{ air.time|time:'f.a' }}" href="{% url 'episode-detail' episode.id %}">{{ episode.series.name.strip }}</a></span>
                 {% if episode.name %}<br />{{ episode.name }}{% endif %}
             </td>
         </tr>{% endwith %}{% endfor %}

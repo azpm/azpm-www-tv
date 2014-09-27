@@ -13,7 +13,7 @@
             <th>Show</th>
         </tr></thead>{% for showing in set.airing %}
         <tr>
-            <td class="show-airtime">{{ showing.time|time:"f a" }}</td><td class="show-info"><span class="primetime-series"><a href="{% url episode-detail showing.airing_id %}" title="{{ showing.airing.season.series.name }}">{{ showing.airing.season.series.name }}{% if showing.airing.name %}: {{ showing.airing.name }}{% endif %}</a></span><br/><span class="primetime-description">{{ showing.airing.short_description }}</span>
+            <td class="show-airtime">{{ showing.time|time:"f a" }}</td><td class="show-info"><span class="primetime-series"><a href="{% url 'episode-detail' showing.airing_id %}" title="{{ showing.airing.season.series.name }}">{{ showing.airing.season.series.name }}{% if showing.airing.name %}: {{ showing.airing.name }}{% endif %}</a></span><br/><span class="primetime-description">{{ showing.airing.short_description }}</span>
             </td>
         </tr>{% endfor %}
     </table>

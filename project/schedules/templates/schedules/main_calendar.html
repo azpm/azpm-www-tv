@@ -14,7 +14,7 @@
     </tr>{% for weeks in block.calendar %}
     <tr class="calendar-week">{% for day in weeks %}
             <td class="{% proper_td_class block day idealised_day %}">{% ifequal day.month block.day.month %}
-            {% if day <= max_days %}<a href="{% url project.schedules.views.schedules_main day.year,day.month,day.day %}">{{ day|date:"j" }}</a>{% else %}{{ day|date:"j" }}{% endif %}
+            {% if day <= max_days %}<a href="{% url 'project.schedules.views.schedules_main' day.year day.month day.day %}">{{ day|date:"j" }}</a>{% else %}{{ day|date:"j" }}{% endif %}
         {% else %}&nbsp;{% endifequal %}</td>{% endfor %}
     </tr>{% endfor %}
 </table>{% endfor %}

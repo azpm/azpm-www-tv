@@ -4,7 +4,7 @@
 <ul class="breadcrumbs">
     <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
     <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
-    <li class="last"><a href="{% url channel-week-glance service.keyname,idealised_day.year,idealised_day.month,idealised_day.day %}" title="{{ service.name }}">Weekly for {{ service.name }}</a></li>
+    <li class="last"><a href="{% url 'channel-week-glance' service.keyname idealised_day.year idealised_day.month idealised_day.day %}" title="{{ service.name }}">Weekly for {{ service.name }}</a></li>
 </ul>
 {% endblock %}
 
@@ -22,7 +22,7 @@
         </tr></thead>{% for showing in day.list %}
         <tr>
             <td class="show-airtime">{{ showing.time|time:"f a" }}</td>
-            <td class="show-info"><span class="primetime-series"><a href="{% url episode-detail showing.episode__id %}" title="{{ showing.episode__season__series__name }}">{{ showing.episode__season__series__name }}</a></span><br/>
+            <td class="show-info"><span class="primetime-series"><a href="{% url 'episode-detail' showing.episode__id %}" title="{{ showing.episode__season__series__name }}">{{ showing.episode__season__series__name }}</a></span><br/>
                 <span class="primetime-description">{{ showing.episode__short_description }}</span>
             </td>
         </tr>{% endfor %}

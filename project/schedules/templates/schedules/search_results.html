@@ -6,7 +6,7 @@
 <ul class="breadcrumbs">
     <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
     <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
-    <li class="last"><a href="{% url schedules-search %}" title="search">Search TV Schedules</a></li>
+    <li class="last"><a href="{% url 'schedules-search' %}" title="search">Search TV Schedules</a></li>
 </ul>
 {% endblock %}
 
@@ -20,7 +20,7 @@
 <div class="namedbox">
     <h1 class="boxtop bt-blue">Search Results</h1>
     {% for collection in results %}{% with series=collection.series episodes=collection.episodes %}
-    <h2 class="series-title">Series: <a href="{% url series-by-nola series.nola %}" title="{{ series.name }}">{{ series.name }}</a></h2>
+    <h2 class="series-title">Series: <a href="{% url 'series-by-nola' series.nola %}" title="{{ series.name }}">{{ series.name }}</a></h2>
     <table id="series-links" class="airing-table bordered-table zebra-table">
         <thead><tr>
             <th class="channel-id">channel</th>
@@ -30,11 +30,11 @@
         </tr></thead>
         {% for episode in episodes %}{% first_episode_air episode params.start params.end as air params.service %}
         <tr>
-            <td><a href="{% url channel-date air.service.keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service.name }}">{{ air.service.name }}</a></td>
+            <td><a href="{% url 'channel-date' air.service.keyname air.date.year air.date.month air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service.name }}">{{ air.service.name }}</a></td>
             <td>{{ air.date|date:"n/j/Y" }}</td>
             <td>{{ air.time|date:"P" }}</td>
             <td>
-                <a href="{% url episode-detail episode.id %}">{% if episode.name %}{{ episode.name }}{% else %}Episode {{ episode.number }} of {{ episode.season.total }}{% endif %}</a>
+                <a href="{% url 'episode-detail' episode.id %}">{% if episode.name %}{{ episode.name }}{% else %}Episode {{ episode.number }} of {{ episode.season.total }}{% endif %}</a>
                 {% if episode.short_description %}<p>{{ episode.short_description }}</p>{% endif %}
             </td>
         </tr>
