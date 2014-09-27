@@ -4,7 +4,7 @@
 <ul class="breadcrumbs">
     <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
     <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
-    <li class="last"><a href="{% url episode-detail episode.id %}" title="{{ episode.title }}">Episode of {{ episode.series.name.strip }}</a></li>
+    <li class="last"><a href="{% url 'episode-detail' episode.id %}" title="{{ episode.title }}">Episode of {{ episode.series.name.strip }}</a></li>
 </ul>
 {% endblock %}
 
@@ -16,7 +16,7 @@
         {% if episode.season.number %}Season {{ episode.season.number }},&nbsp;{% endif %}Episode {{ episode.number }} of {{ episode.season.total }}
         {% if episode.title %}:&nbsp;{% endif %}
     </span><br/>
-    <span class="series-name"><a href="{% url series-by-nola episode.series.nola %}" title="{{ episode.series.name.strip }}">More from this Series</a></span>
+    <span class="series-name"><a href="{% url 'series-by-nola' episode.series.nola %}" title="{{ episode.series.name.strip }}">More from this Series</a></span>
     <br/><br/>
     {% if not episode.description %}
         {% if episode.short_description %}
@@ -43,7 +43,7 @@
             <td>{{ air.date|date:"n/j/Y" }}</td>
             <td>{{ air.time|date:"P" }}</td>
             <td>
-                <a href="{% url channel-date air.service__keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service__name }}">{{ air.service__name }}</a>
+                <a href="{% url 'channel-date' air.service__keyname air.date.year air.date.month air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service__name }}">{{ air.service__name }}</a>
             </td>
         </tr>{% endfor %}
     </table>
@@ -60,7 +60,7 @@
             <td>{{ air.date|date:"n/j/Y" }}</td>
             <td>{{ air.time|date:"P" }}</td>
             <td>
-                <a href="{% url channel-date air.service__keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service__name }}">{{ air.service__name }}</a>
+                <a href="{% url 'channel-date' air.service__keyname air.date.year air.date.month air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service__name }}">{{ air.service__name }}</a>
             </td>
         </tr>{% endfor %}
     </table>

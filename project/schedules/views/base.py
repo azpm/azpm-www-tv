@@ -1,25 +1,19 @@
 import logging
 import calendar
-
 from datetime import datetime, date, timedelta
 from random import randint
-
 from django.db.models import Q, Max
-from django.core.cache import cache
 from operator import ior, iand
 from string import punctuation
 from django.conf import settings
 from django.shortcuts import get_object_or_404, get_list_or_404
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import Http404
 from django.views.generic import FormView, TemplateView
-
 from libazpm.contrib.calendar.legacy.helpers import generate_calendars
-from libazpm.contrib.chronologia.models import Service, Series, Season, Episode, EpisodeAir, Air
+from libazpm.contrib.chronologia.models import Service, Series, Episode, EpisodeAir, Air
 from libazpm.contrib.chronologia.forms import *
-
 from libscampi.contrib.cms.views.base import Page
 from libscampi.contrib.cms.communism.models import *
-
 from .mixins import ChannelMixin
 
 logger = logging.getLogger('project.schedules')
