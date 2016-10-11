@@ -41,7 +41,7 @@
     <h1 class="boxtop bt-blue">Series Information</h1>{% for item in items %}
         {% with item.series as series %}
         <span class="series-name">{{ series.name.strip }}</span><br /><br/>
-        <span class="series-descrip">{{ series.description.strip }}</span>
+        <span class="series-descrip">{{ series.description|safe }}</span>
         <br />
         {% endwith %}
     {% endfor %}
