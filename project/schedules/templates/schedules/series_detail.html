@@ -1,13 +1,5 @@
 {% extends "schedules/base.html" %}
 
-{% block breadcrumbs %}
-<ul class="breadcrumbs">
-    <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
-    <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
-    <li class="last"><a href="{% url series-by-nola base_series.nola %}" title="{{ base_series.name.strip }}">{{ base_series.name.strip }}</a></li>
-</ul>
-{% endblock %}
-
 {% block zone_one %}
 
 {% for item in items %}
