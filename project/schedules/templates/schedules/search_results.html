@@ -13,58 +13,51 @@
 						<a name="top"></a>
 					</span>					
 				</div>
-			</div>
+</div>
 {% endblock %}
 
 {% block zone_one %}
 {% if not results %}
-<div class="row">
-	<div class="col-sm-12">
-		<h1>Search Results</h1>
-		<p>No Results.</p>
-	</div>
-</div>
+<!-- SCHEDULES -->
+	<section id="schedules">
+		<div class="container-fluid">
+			<div class="row">				
+				<div class="col-sm-12">
+					<h1>Search Results</h1>
+					<p>No Results.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 {% else %}
-<div class="namedbox">
-    <h1 class="boxtop bt-blue">Search Results</h1>
-    {% for collection in results %}{% with series=collection.series episodes=collection.episodes %}
-    <h2 class="series-title">Series: <a href="{% url series-by-nola series.nola %}" title="{{ series.name }}">{{ series.name }}</a></h2>
-    <table id="series-links" class="airing-table bordered-table zebra-table">
-        <thead><tr>
-            <th class="channel-id">channel</th>
-            <th class="date-info">date</th>
-            <th class="time-info">time</th>
-            <th class="episode-id">episode <span class="episode-helper">(click to see all repeats)</span></th>
-        </tr></thead>
-        {% for episode in episodes %}{% first_episode_air episode params.start params.end as air params.service %}
-        <tr>
-            <td><a href="{% url channel-date air.service.keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service.name }}">{{ air.service.name }}</a></td>
-            <td>{{ air.date|date:"n/j/Y" }}</td>
-            <td>{{ air.time|date:"P" }}</td>
-            <td>
-                <a href="{% url episode-detail episode.id %}">{% if episode.name %}{{ episode.name }}{% else %}Episode {{ episode.number }} of {{ episode.season.total }}{% endif %}</a>
-                {% if episode.short_description %}<p>{{ episode.short_description }}</p>{% endif %}
-            </td>
-        </tr>
-        {% endfor %}{% endwith %}
-    </table>{% endfor %}
-</div>{% endif %}
-{% endblock %}
-
-{% block zone_two %}
-<div class="namedbox" id="tv-schedules-search">
-    <h1 class="boxtop bt-red">Search Schedules</h1>
-    {% search_form form %}
-</div>
-<div class="namedbox" id="tv-schedules-print">
-    <h1 class="boxtop bt-red">Print Schedules</h1>
-    {% print_form %}
-</div>{% if underwriting_spotlets %}
-<div class="namedbox">
-    <h1 class="boxtop bt-blue">Support Comes From</h1>
-    {% for spot in underwriting_spotlets %}
-    <a href="{{ spot.myurl }}" ><img src="{{ spot.image.url }}" alt="{{ spot.underwriter }}"/></a>
-    <hr size="6" color="gray" style="margin:0px;" />
-    {% endfor %}
-</div>{% endif %}
+<section id="schedules">
+		<div class="container-fluid">
+			<div class="row">				
+				<div class="col-sm-12">
+				<h1>Search Results</h1>
+				{% for collection in results %}{% with series=collection.series episodes=collection.episodes %}
+				<h3>Series: <a href="{% url series-by-nola series.nola %}" title="{{ series.name }}">{{ series.name }}</a></h3>
+				<table id="series-links" class="airing-table bordered-table zebra-table">
+					<thead><tr>
+						<th class="channel-id">channel</th>
+						<th class="date-info">date</th>
+						<th class="time-info">time</th>
+						<th class="episode-id">episode <span class="episode-helper">(click to see all repeats)</span></th>
+					</tr></thead>
+					{% for episode in episodes %}{% first_episode_air episode params.start params.end as air params.service %}
+					<tr>
+						<td><a href="{% url channel-date air.service.keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service.name }}">{{ air.service.name }}</a></td>
+						<td>{{ air.date|date:"n/j/Y" }}</td>
+						<td>{{ air.time|date:"P" }}</td>
+						<td>
+							<a href="{% url episode-detail episode.id %}">{% if episode.name %}{{ episode.name }}{% else %}Episode {{ episode.number }} of {{ episode.season.total }}{% endif %}</a>
+							{% if episode.short_description %}<p>{{ episode.short_description }}</p>{% endif %}
+						</td>
+					</tr>
+					{% endfor %}{% endwith %}
+				</table>{% endfor %}
+			</div>{% endif %}
+			
+		</div>
+</section>
 {% endblock %}
