@@ -1,20 +1,25 @@
 {% load scheduling %}{% for block in calendars %}
-<table class="schedule-calendar">
-    <tr>
-        <td class="calendar-month" colspan="7">{{ block.day|date:"F, Y" }}</td>
-    </tr>
-    <tr class="weekdays">
-        <td>s</td>
-        <td>m</td>
-        <td>t</td>
-        <td>w</td>
-        <td>t</td>
-        <td>f</td>
-        <td>s</td>
-    </tr>{% for weeks in block.calendar %}
-    <tr class="calendar-week">{% for day in weeks %}
-            <td class="{% proper_td_class block day idealised_day %}">{% ifequal day.month block.day.month %}
-            {% if day <= max_days %}<a href="{% url project.schedules.views.schedules_main day.year,day.month,day.day %}">{{ day|date:"j" }}</a>{% else %}{{ day|date:"j" }}{% endif %}
-        {% else %}&nbsp;{% endifequal %}</td>{% endfor %}
-    </tr>{% endfor %}
-</table>{% endfor %}
+<div class="row collapse in" id="datesched">
+	<div class="col-sm-12">
+		<table class="schedule-calendar">
+			<tr>
+				<td class="calendar-month" colspan="7">{{ block.day|date:"F, Y" }}</td>
+			</tr>
+				<tr class="weekdays">
+					<td>S</td>
+					<td>M</td>
+					<td>T</td>
+					<td>W</td>
+					<td>Th</td>
+					<td>F</td>
+					<td>S</td>
+				</tr>{{% for weeks in block.calendar %}
+				<tr class="calendar-week">{% for day in weeks %}
+					<td class="{% proper_td_class block day idealised_day %}">{% ifequal day.month block.day.month %}
+					{% if day <= max_days %}<a href="{% url project.schedules.views.schedules_main day.year,day.month,day.day %}">{{ day|date:"j" }}</a>{% else %}{{ day|date:"j" }}{% endif %}
+					{% else %}&nbsp;{% endifequal %}</td>{% endfor %}
+				</tr>{% endfor %}
+		</table>
+	</div>
+</div>
+{% endfor %}

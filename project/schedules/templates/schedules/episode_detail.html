@@ -1,75 +1,110 @@
 {% extends "schedules/base.html" %}
 
-{% block breadcrumbs %}
-<ul class="breadcrumbs">
-    <li><a href="{{ cms_realm.get_absolute_url }}" title="{{ cms_realm.name }}">{{ cms_realm.name }}</a></li><!-- woot tv realm -->
-    <li><a href="{{ cms_section.get_absolute_url }}" title="{{ cms_section.element.name }}">{{ cms_section.element.name }}</a></li><!-- woot schedules app -->
-    <li class="last"><a href="{% url episode-detail episode.id %}" title="{{ episode.title }}">Episode of {{ episode.series.name.strip }}</a></li>
-</ul>
-{% endblock %}
-
 {% block zone_one %}
-<div class="namedbox">
-    <h1 class="boxtop bt-blue">Episode of {{ episode.season.series.name.strip }}</h1>
-    {% if episode.name %}<h2 class="episode-title">{{ episode.name|title }}</h2>{% endif %}
-    <span class="episode-numerology">
-        {% if episode.season.number %}Season {{ episode.season.number }},&nbsp;{% endif %}Episode {{ episode.number }} of {{ episode.season.total }}
-        {% if episode.title %}:&nbsp;{% endif %}
-    </span><br/>
-    <span class="series-name"><a href="{% url series-by-nola episode.series.nola %}" title="{{ episode.series.name.strip }}">More from this Series</a></span>
-    <br/><br/>
-    {% if not episode.description %}
-        {% if episode.short_description %}
-        <p class="episode-description">{{ episode.short_description }}</p>
-        {% else %}{% if episode.series.description %}
-        <p class="episode-description">{{ episode.series.description }}</p>
-        {% endif %}{% endif %}
-    {% else %}
-        <p class="episode-description">{% if episode.description %}{{ episode.description }}</p>{% else %}No episode description available{% endif %}
-    {% endif %}
-</div>
-{% endblock %}
 
-{% block zone_two %}{% if future_airs %}
-<div class="namedbox">
-    <h1 class="boxtop bt-red">When to Watch</h1>
-    <table class="episode-airings bordered-table zebra-table">
-        <thead><tr>
-            <th class="episode-airing-day">day</th>
-            <th class="episode-airing-time">time</th>
-            <th class="episode-airing-channel">channel</th>
-        </tr></thead>{% for air in future_airs %}
-        <tr>
-            <td>{{ air.date|date:"n/j/Y" }}</td>
-            <td>{{ air.time|date:"P" }}</td>
-            <td>
-                <a href="{% url channel-date air.service__keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service__name }}">{{ air.service__name }}</a>
-            </td>
-        </tr>{% endfor %}
-    </table>
-</div>{% endif %}{% if past_airs %}
-<div class="namedbox">
-    <h1 class="boxtop bt-grey">Previously Aired</h1>
-    <table class="episode-airings bordered-table zebra-table">
-        <thead><tr>
-            <th class="episode-airing-day">day</th>
-            <th class="episode-airing-time">time</th>
-            <th class="episode-airing-channel">channel</th>
-        </tr></thead>{% for air in past_airs %}
-        <tr>
-            <td>{{ air.date|date:"n/j/Y" }}</td>
-            <td>{{ air.time|date:"P" }}</td>
-            <td>
-                <a href="{% url channel-date air.service__keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}" title="{{ air.service__name }}">{{ air.service__name }}</a>
-            </td>
-        </tr>{% endfor %}
-    </table>
-</div>{% endif %}{% if underwriting_spotlets %}
-<div class="namedbox">
-    <h1 class="boxtop bt-blue">Support Comes From</h1>
-    {% for spot in underwriting_spotlets %}
-    <a href="{{ spot.myurl }}" ><img src="{{ spot.image.url }}" alt="{{ spot.underwriter }}"/></a>
-    <hr size="6" color="gray" style="margin:0px;" />
-    {% endfor %}
-</div>{% endif %}
+<section id="schedules">
+		<div class="container-fluid">
+			<div class="row">				
+				<div class="col-lg-12">
+					<span class="top-tag-row">
+						<ol class="breadcrumb" style="margin-bottom: 5px;">
+						  <li><a href="https://tv.azpm.org/schedules/">TV Schedules</a></li>
+						  <li class="active">Episode of {{ episode.season.series.name.strip }}</li>
+						</ol>
+						<a name="top"></a>
+					</span>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8 episode-info">
+					<h1><a href="{% url series-by-nola episode.series.nola %}">{{ episode.season.series.name.strip }}</a></h1>
+						{% if episode.name %}<h3>{{ episode.name|title }}</h3>{% endif %}
+						<span>{% if episode.season.number %}Season {{ episode.season.number }},{% endif %} Episode {{ episode.number }} of {{ episode.season.total }} </span>
+						{% if not episode.description %}
+							{% if episode.short_description %}
+								<p>{{ episode.short_description }}</p>
+							{% else %}{% if episode.series.description %}
+								<p>{{ episode.series.description }}</p>
+							{% endif %}{% endif %}
+						{% else %}
+							{% if episode.description %}
+								<p>{{ episode.description }}</p>
+							{% else %}No episode description available{% endif %}
+						{% endif %}
+						<div class="row margintop marginbottom">
+							<div class="col-sm-12">
+								<i class="fa fa-caret-right" aria-hidden="true"></i> <a href="{% url series-by-nola episode.series.nola %}">More From this Series</a>
+							</div>
+						</div>
+				</div>
+				{% endblock %}
+				<div class="col-sm-4">
+				{% if future_airs %}
+					<div class="row">
+						<div class="col-sm-12">
+							<h4>When to Watch</h4>
+						</div>
+					</div>
+					<div class="row schedlistkey">
+						<div class="col-sm-4">
+							Day
+						</div>
+						<div class="col-sm-4">
+							Time
+						</div>
+						<div class="col-sm-4">
+							Channel
+						</div>
+					</div>
+					{% for air in future_airs %}
+					<div class="row schedlistline">
+						<div class="col-sm-4">
+							{{ air.date|date:"n/j/Y" }}
+						</div>
+						<div class="col-sm-4">
+							{{ air.time|date:"P" }}
+						</div>
+						<div class="col-sm-4">
+							<a href="{% url channel-date air.service__keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}">{{ air.service__name }}</a>
+						</div>
+					</div>
+					{% endfor %}
+				{% endif %}
+				{% if past_airs %}
+					<div class="row margintop">
+						<div class="col-sm-12">
+							<h4>Previously Aired</h4>
+						</div>
+					</div>
+					<div class="row schedlistkey">
+						<div class="col-sm-4">
+							Day
+						</div>
+						<div class="col-sm-4">
+							Time
+						</div>
+						<div class="col-sm-4">
+							Channel
+						</div>
+					</div>
+					{% for air in past_airs %}
+					<div class="row schedlistline">
+						<div class="col-sm-4">
+							{{ air.date|date:"n/j/Y" }}
+						</div>
+						<div class="col-sm-4">
+							{{ air.time|date:"P" }}
+						</div>
+						<div class="col-sm-4">
+							<a href="{% url channel-date air.service__keyname,air.date.year,air.date.month,air.date.day %}#{{ air.time|time:'f.a' }}">{{ air.service__name }}</a>
+						</div>
+					</div>
+					{% endfor %}
+				{% endif %}
+									
+				</div>
+
+			</div>
+		</div>
+</section>
 {% endblock %}

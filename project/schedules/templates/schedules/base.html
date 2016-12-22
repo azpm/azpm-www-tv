@@ -1,59 +1,32 @@
-{% extends "intensifier/base.html" %}
+{% extends "ultralaser/base.html" %}
 
 {% block open-graph %}
     <meta property="og:title" content="TV Schedules - Arizona Public Media" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:description" content="{{ cms_page.title }}" />
-    <meta property="og:image" content="{{ cms_page.theme.banner.url }}" />
+    <meta property="og:description" content="TV Schedules for PBS 6, PBS Kids, Ready/World, and VMe" />
+    <meta property="og:image" content="https://media.azpm.org/master/image/2016/10/17/ogimg/schedules.jpg" />
+	
+	<meta property="og:title" content="TV Schedules - AZPM" />
+	<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+	<meta property="og:description" content="TV Schedules for PBS 6, PBS Kids, Ready/World, and VMe" />
+	<meta property="og:image" content="https://media.azpm.org/master/image/2016/10/17/ogimg/schedules.jpg" />
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@azpm">
+	<meta name="twitter:creator" content="@azpm">
+	<meta name="twitter:title" content="TV Schedules - Arizona Public Media">
+	<meta name="twitter:description" content="TV Schedules for PBS 6, PBS Kids, Ready/World, and VMe">
+	<meta name="twitter:image" content="https://media.azpm.org/master/image/2016/10/17/ogimg/schedules.jpg">
 {% endblock %}
 
 {% load protrack %}
 
-{% block extra_style %}{% print_form_css %}{% endblock %}
+{% block extra_style %}{% print_form_css %}
+<link href="https://media.azpm.org/master/doc/redesign/css/bootstrap-datepicker3.css" rel="stylesheet">
+{% endblock %}
 {% block extra_script %}{% comment %}{% print_form_js %}{% endcomment %}
-<script type="text/javascript">
-(function($) {
-    $(document).ready(function() {
-        // fade in #back-top
-        $(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 125) {
-                    $('#back-top').fadeIn();
-                } else {
-                    $('#back-top').fadeOut();
-                }
-            });
-
-            // scroll body to 0px on click
-            $('#back-top a').click(function () {
-                $('body,html').animate({scrollTop: 0}, 800);
-                return false;
-            });
-        });
-    });
-})($);
-</script>
 {% endblock %}
 
 {% block content %}
-<!-- creating a slice -->
-<div class="slice clearfix content-bg">
-    <div class="grid_2">
-        {% block zone_one %}{% endblock %}
-    </div>
-    <div class="grid_1">
-        {% block zone_two %}
-        <div class="namedbox first-box" id="tv-schedules-search">
-            <h1 class="boxtop bt-red">Search Schedules</h1>
-            {% search_form %}
-        </div>
-        <div class="namedbox" id="tv-schedules-print">
-            <h1 class="boxtop bt-red">Print Schedules</h1>
-            {% print_form %}
-        </div>
-        {% endblock %}
-    </div>
-</div>
-<!-- end slice -->
-<p id="back-top"><a href="#top"><span></span><em>Back to top</em> </a></p>
+	{% block zone_one %}{% endblock %}
 {% endblock %}
