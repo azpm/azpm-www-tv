@@ -25,8 +25,8 @@
 					{% include "schedules/main_calendar.html" %}
 				</div>
 				
-				{% for set in primetime %}{% if set.airing %}
 				<div class="col-sm-9">
+					{% for set in primetime %}{% if set.airing %}
 					<div class="row">
 						<div class="col-sm-8">
 							<h2>{{ set.service.name }} Tonight</h2>

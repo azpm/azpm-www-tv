@@ -21,7 +21,10 @@
 
 {% load protrack %}
 
-{% block extra_style %}{% print_form_css %}
+{% block extra_style %}
+ <link href="https://media.azpm.org/master/doc/redesign/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://media.azpm.org/master/doc/redesign/css/azpm.css" rel="stylesheet">
+	<link href="https://media.azpm.org/master/doc/redesign/css/bootstrap-datepicker3.css" rel="stylesheet">
 <link href="https://media.azpm.org/master/doc/redesign/css/bootstrap-datepicker3.css" rel="stylesheet">
 {% endblock %}
 {% block extra_script %}{% comment %}{% print_form_js %}{% endcomment %}
