@@ -20,7 +20,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					{% series.html|safe %}
+					{% if series.html %} {{ series.html|safe}} {% else %}  &nbsp; {% endif %}
 				</div>
 				<div class="col-sm-8 episode-info">
 					<h1>{{ series.name.strip }}</h1>
