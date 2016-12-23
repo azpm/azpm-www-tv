@@ -1,7 +1,6 @@
 {% extends "schedules/base.html" %}
 
 {% block zone_one %}
-
 <section id="schedules">
 		<div class="container-fluid">
 			<div class="row">				
@@ -9,7 +8,7 @@
 					<span class="top-tag-row">
 						<ol class="breadcrumb" style="margin-bottom: 5px;">
 						  <li><a href="https://tv.azpm.org/schedules/">TV Schedules</a></li>
-						  <li class="active">Primetime Schedules</li>
+						  <li class="active">Primetime</li>
 						</ol>
 						<a name="top"></a>
 					</span>					
@@ -17,7 +16,7 @@
 			</div>
 			<div class="row">				
 				<div class="col-lg-12">
-					<h1>Primetime TV Schedulse</h1>	
+					<h1>Primetime TV Schedules</h1>	
 					{% include "schedules/channel_nav.html" %}
 				</div>
 			</div>
@@ -34,7 +33,7 @@
 						</div>
 						<div class="col-sm-4">
 							<div class="daysched">
-								<a href="{% url channel-today l_service.keyname %}">Daytime Schedule</a>
+								<a href="{% url set.service.keyname %}">Daytime Schedule</a>
 							</div>	
 						</div>
 					</div>					
