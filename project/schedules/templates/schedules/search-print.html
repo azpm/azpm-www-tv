@@ -1,0 +1,99 @@
+<div class="row">
+						<div class="col-sm-12">
+							<a class="btn btn-primary btn-block hideshbtn" data-toggle="collapse" data-target="#searchsched" aria-expanded="false"><i class="fa fa-search"></i><i class="fa fa-arrow-circle-o-up"></i> Search Schedules</a>
+						</div>
+					</div>
+					<div class="row collapse" id="searchsched">
+						<div class="col-sm-12">
+							<form role="form" action="/schedules/search/" method="post">
+								{% csrf_token %}
+								<script>
+									$('.date').datepicker({
+									autoclose: true,
+									todayHighlight: true
+								});
+								</script>
+							<div class="form-group">						
+								<label for="id_searchcc-service">Channel</label>
+								<select class="form-control" name="searchcc-service" id="id_searchcc-service">
+									<option value="" selected="selected"></option>
+									<option value="7">PBS 6</option>
+									<option value="2">PBS Kids</option>
+									<option value="12">Ready/World</option>
+									<option value="3">Vme</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="id_searchcc-keywords">Keywords*</label>
+								<input type="text" class="form-control" name="searchcc-keywords" id="id_searchcc-keywords" />
+							</div>
+							<div class="form-group" style="margin-bottom:40px !important;">
+								<label for="id_searchcc-start_date">Start Date</label>
+								<div class="input-group date" data-provide="datepicker" style="margin-top:0px;">
+									<input type="text" class="form-control" name="searchcc-start_date" value="{% now "SHORT_DATE_FORMAT" %}" id="id_searchcc-start_date">
+									<span class="input-group-addon" style="display:none;">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom:50px !important;">
+								<label for="id_searchcc-end_date">End Date</label>
+								<div class="input-group date" style="margin-top:0px;" data-provide="datepicker">
+									<input type="text" class="form-control" name="searchcc-end_date" id="id_searchcc-end_date">
+									<span class="input-group-addon" style="display:none;">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<input type="submit" name="submit" value="Search" class="btn btn-blue"/>
+							</div>
+							</form>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<a class="btn btn-primary btn-block hideshbtn" data-toggle="collapse" data-target="#printsched" aria-expanded="false"><i class="fa fa-print"></i><i class="fa fa-arrow-circle-o-up"></i> Print Schedules</a>
+						</div>
+					</div>
+					<div class="row collapse" id="printsched">
+						<div class="col-sm-12">
+							<form role="form" action="/schedules/printcenter/" method="post">
+								{% csrf_token %}
+							<div class="form-group">						
+								<label for="id_printcc-service">Channel*</label>
+								<select class="form-control" name="printcc-service" id="id_printcc-service">
+									<option value="" selected="selected"></option>
+									<option value="7">PBS 6</option>
+									<option value="2">PBS Kids</option>
+									<option value="12">Ready/World</option>
+									<option value="3">Vme</option>
+								</select>
+							</div>
+							<div class="form-group" style="margin-bottom:40px !important;">
+								<label for="id_printcc-start_date">Start Date*</label>
+								<div class="input-group date" data-provide="datepicker" style="margin-top:0px;">
+									<input type="text" class="form-control" name="printcc-start_date" id="id_printcc-start_date">
+									<span class="input-group-addon" style="display:none;">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom:50px !important;">
+								<label for="id_printcc-end_date">End Date*</label>
+								<div class="input-group date" style="margin-top:0px;" data-provide="datepicker">
+									<input type="text" class="form-control" name="printcc-end_date" id="id_printcc-end_date">
+									<span class="input-group-addon" style="display:none;">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+							<div class="checkbox">						
+								<label><input type="checkbox" name="printcc-primetime_toggle" id="id_printcc-primetime_toggle">Primetime Only</label>
+							</div>
+							<div class="form-group">
+								<input type="submit" name="submit" value="Print" class="btn btn-blue"/>
+							</div>
+							</form>
+						</div>
+					</div>

@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-sm-8 episode-info">
 					<h1><a href="{% url series-by-nola episode.series.nola %}">{{ episode.season.series.name.strip }}</a></h1>
-						{% if episode.name %}<h3>{{ episode.name|title }}</h3>{% endif %}
+						{% if episode.name and episode.name != "None"%}<h3>{{ episode.name|title }}</h3>{% endif %}
 						<span>{% if episode.season.number %}Season {{ episode.season.number }},{% endif %} Episode {{ episode.number }} of {{ episode.season.total }} </span>
 						{% if not episode.description %}
 							{% if episode.short_description %}
