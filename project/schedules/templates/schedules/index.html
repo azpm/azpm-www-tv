@@ -38,8 +38,7 @@
 				
 				<div class="col-sm-9">
 					{% for set in primetime %}{% if set.airing %}
-					{% if forloop.first %}
-					<div class="row">
+					<div class="row{% if not forloop.first %} marginextratop{% endif %}">
 						<div class="col-sm-8">
 							<h2>{{ set.service.name }} Tonight</h2>
 						</div>
@@ -67,37 +66,6 @@
 							{{ showing.airing.short_description }}				
 						</div>
 					</div>
-					{% endif %}
-					{% if not forloop.first %}
-					<div class="row marginextratop">
-						<div class="col-sm-8">
-							<h2>{{ set.service.name }} Tonight</h2>
-						</div>
-						<div class="col-sm-4">
-							<div class="daysched">
-								<a href="#">Daytime Schedule</a>
-							</div>	
-						</div>
-					</div>					
-					<div class="row schedlistkey">
-						<div class="col-sm-3">
-							Time					
-						</div>
-						<div class="col-sm-9">
-							Show					
-						</div>
-					</div>
-					{% for showing in set.airing %}
-					<div class="row schedlistline">
-						<div class="col-sm-3">
-							{{ showing.time|time:"f a" }}					
-						</div>
-						<div class="col-sm-9">
-							<a href="{% url episode-detail showing.airing_id %}">{{ showing.airing.season.series.name }}{% if showing.airing.name and showing.airing.name != "None" %}: {{ showing.airing.name }}{% endif %}</a>
-							{{ showing.airing.short_description }}				
-						</div>
-					</div>
-					{% endif %}
 					{% endfor %}
 				{% endif %}{% endfor %}
 					
