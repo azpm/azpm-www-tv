@@ -63,7 +63,7 @@
 									{{ air.time|time:"P" }}				
 								</div>
 								<div class="col-sm-5">
-									<a href="{% url episode-detail air.airing_id %}">{% if air.airing.name %}{{ air.airing.name }}{% else %}Episode {{ air.airing.number }} of {{ air.airing.season.total }}{% endif %}</a>	
+									<a href="{% url episode-detail air.airing_id %}">{% if air.airing.name and air.airing.name != "None" %}{{ air.airing.name }}{% else %}Episode {{ air.airing.number }} of {{ air.airing.season.total }}{% endif %}</a>	
 								</div>
 							</div>
 							{% endfor %}

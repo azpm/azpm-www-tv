@@ -22,12 +22,24 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-3 marginbottom">
+					<div class="row">
+						<div class="col-sm-12">
+							<a class="btn btn-primary btn-block hideshbtn" data-toggle="collapse" data-target="#searchsched" aria-expanded="false"><i class="fa fa-search"></i><i class="fa fa-arrow-circle-o-up"></i> Search Schedules</a>
+						</div>
+					</div>
+					<div class="row collapse" id="searchsched">
+						<div class="col-sm-12">
+							{% search_form form %}
+						</div>
+					</div>
+					{% block print %}{% end block %}
 					{% include "schedules/main_calendar.html" %}
 				</div>
 				
 				<div class="col-sm-9">
 					{% for set in primetime %}{% if set.airing %}
-					<div class="row margintop">
+					{% if forloop.first %}
+					<div class="row">
 						<div class="col-sm-8">
 							<h2>{{ set.service.name }} Tonight</h2>
 						</div>
@@ -55,6 +67,37 @@
 							{{ showing.airing.short_description }}				
 						</div>
 					</div>
+					{% endif %}
+					{% if not forloop.first %}
+					<div class="row marginextratop">
+						<div class="col-sm-8">
+							<h2>{{ set.service.name }} Tonight</h2>
+						</div>
+						<div class="col-sm-4">
+							<div class="daysched">
+								<a href="#">Daytime Schedule</a>
+							</div>	
+						</div>
+					</div>					
+					<div class="row schedlistkey">
+						<div class="col-sm-3">
+							Time					
+						</div>
+						<div class="col-sm-9">
+							Show					
+						</div>
+					</div>
+					{% for showing in set.airing %}
+					<div class="row schedlistline">
+						<div class="col-sm-3">
+							{{ showing.time|time:"f a" }}					
+						</div>
+						<div class="col-sm-9">
+							<a href="{% url episode-detail showing.airing_id %}">{{ showing.airing.season.series.name }}{% if showing.airing.name and showing.airing.name != "None" %}: {{ showing.airing.name }}{% endif %}</a>
+							{{ showing.airing.short_description }}				
+						</div>
+					</div>
+					{% endif %}
 					{% endfor %}
 				{% endif %}{% endfor %}
 					
