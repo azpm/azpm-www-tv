@@ -10,27 +10,8 @@
 {% load protrack %}
 {% block extra_style %}{% print_form_css %}{% endblock %}
 
-{% block content %}
-					<div class="row">
-						<div class="col-sm-12">
-							<a class="btn btn-primary btn-block hideshbtn" data-toggle="collapse" data-target="#printsched" aria-expanded="false"><i class="fa fa-print"></i><i class="fa fa-arrow-circle-o-up"></i> Print Schedules</a>
-						</div>
-					</div>
-					<div class="row collapse" id="printsched">
-						<div class="col-sm-12">
-							<form action="." method="POST" class="top-command-bar">{% csrf_token %}
-							{% for field in form %}
-								{{  field.label_tag }}{% if field.field.required %}*{% endif %}&nbsp;{{ field }}
-							{% endfor %}
-							<div class="form-group">
-								<input type="submit" name="submit" value="Print" class="btn btn-blue"/>
-							</div>
-							</form>
-						</div>
-					</div>
-{% endblock %}
-{% if results %}
 {% block zone_one %}
+{% if results %}
 <section id="schedules">
 		<div class="container-fluid">
 			<div class="row">
@@ -53,9 +34,7 @@
 			</div>
 		</div>
 </section>
-{% endblock %}
 {% else %}
-{% block zone_one %}
 <section id="schedules">
 		<div class="container-fluid">
 			<div class="row">
