@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-4 supimage">
+				<div class="col-sm-4">
 					{% if series.html %} {{ series.html|safe}} {% else %}  &nbsp; {% endif %}
 				</div>
 				<div class="col-sm-8 episode-info">
@@ -63,7 +63,7 @@
 									{{ air.time|time:"P" }}				
 								</div>
 								<div class="col-sm-5">
-									<a href="{% url episode-detail air.airing_id %}">{% if air.airing.name %}{{ air.airing.name }}{% else %}Episode {{ air.airing.number }} of {{ air.airing.season.total }}{% endif %}</a>	
+									<a href="{% url episode-detail air.airing_id %}">{% if air.airing.name and air.airing.name != "None" %}{{ air.airing.name }}{% else %}Episode {{ air.airing.number }} of {{ air.airing.season.total }}{% endif %}</a>	
 								</div>
 							</div>
 							{% endfor %}
