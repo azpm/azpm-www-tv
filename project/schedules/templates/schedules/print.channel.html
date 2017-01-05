@@ -8,41 +8,79 @@
 {% endblock %}
 
 {% load protrack %}
-{% block extra_style %}{% print_form_css %}{% endblock %}
+{% block extra_style %}{% print_form_css %}
+<style type="text/css">
+    body {
+        color: #000000;
+        background: #FFFFFF;
+        margin: 0px;
+    }
+
+    a:link, a:visited {
+        background: #FFFFFF;
+        color: #000000;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    h3 {
+        background: #FFFFFF;
+        color: #000000;
+        border-bottom:1px solid #555555;
+    }
+
+    table tr {
+        vertical-align:top;
+    }
+
+    table tr td blockquote{
+        margin:0px;
+        font-weight:normal;
+        font-size:85%;
+        font-style:italic;
+    }
+
+    .top-command-bar {
+        width: 100%;
+        margin: 0;
+        background-color: #000;
+        color: #fff;
+        line-height: 40px;
+        text-align: center;
+    }
+    div#footer {
+        margin: 0 auto;
+        width: 50%;
+        text-align: center;
+    }
+
+</style>
+{% endblock %}
 
 {% block content %}
+<form action="." method="POST" class="top-command-bar">{% csrf_token %}
+{% for field in form %}
+{% if field.field.required %}<strong>{% endif %}{{  field.label_tag }}{% if field.field.required %}</strong>{% endif %}&nbsp;{{ field }}
+{% endfor %}
+<input type="submit" name="submit" value="submit"/>
+<a href="{% url schedules-index %}">Return to Schedules</a>
+</form>
 {% if results %}
-<section id="schedules">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-12">
-				<h1>{{ results.service.name }}</h1>
-				<h2>{{ results.start_date|date:"F jS" }} {%  ifnotequal results.start_date results.end_date %}to {{ results.end_date|date:"F jS"}}{% endifnotequal %} {% if results.primetime %}Primetime Listings Only{% endif %}</h2>
-				{% regroup results.airing by date as airing_list %}
-				{% for item in airing_list %}
-					<h3>{{ item.grouper|date:"l, F jS" }}</h3>
-					<table style="width:100%; font-weight:bold;">
-						{% for showing in item.list %}
-						<tr>
-							<td style="width:85px;">{{ showing.time|time:"" }} </td>
-							<td>{{ showing.airing.series.name }} {% if showing.airing.title %}&mdash; {{ showing.airing.title }}{% endif %}<br/><blockquote>{% filter truncatewords:"30" %}{% firstof showing.airing.short_description showing.airing.description "No Description" %}{% endfilter %}</blockquote></td>
-						</tr>
-						{% endfor %}
-					</table>
-				{% endfor %}
-				</div>
-			</div>
-		</div>
-</section>
-{% else %}
-<section id="schedules">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-12">
-				<h1>No Results</h1>
-			</div>
-		</div>
-		</div>
-</section>
+<h1>{{ results.service.name }}</h1>
+<h2>{{ results.start_date|date:"F jS" }} {%  ifnotequal results.start_date results.end_date %}to {{ results.end_date|date:"F jS"}}{% endifnotequal %} {% if results.primetime %}Primetime Listings Only{% endif %}</h2>
+{% regroup results.airing by date as airing_list %}
+{% for item in airing_list %}
+    <h3>{{ item.grouper|date:"l, F jS" }}</h3>
+    <table style="width:100%; font-weight:bold;">
+        {% for showing in item.list %}
+        <tr>
+            <td style="width:85px;">{{ showing.time|time:"" }} </td>
+            <td>{{ showing.airing.series.name }} {% if showing.airing.title %}&mdash; {{ showing.airing.title }}{% endif %}<br/><blockquote>{% filter truncatewords:"30" %}{% firstof showing.airing.short_description showing.airing.description "No Description" %}{% endfilter %}</blockquote></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
+{%  else %}
+    <h1>No Results</h1>
 {%  endif %}
 {% endblock %}
