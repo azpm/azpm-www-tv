@@ -6,7 +6,7 @@
 <div class="row collapse" id="searchsched">
 	<div class="col-sm-12">
 		<form role="form" action="/schedules/search/" method="post">
-			{% csrf_token %}
+		{% csrf_token %}
 			<script>
 				$('.date').datepicker({
 				autoclose: true,
@@ -92,7 +92,7 @@
 			<label><input type="checkbox" name="printcc-primetime_toggle" id="id_printcc-primetime_toggle">Primetime Only</label>
 		</div>
 		<div class="form-group">
-			<input type="submit" name="submit" value="Print" class="btn btn-blue"/>
+			<input type="submit" name="submit" value="Print Schedules" class="btn btn-blue"/>
 		</div>
 		</form>
 	</div>
