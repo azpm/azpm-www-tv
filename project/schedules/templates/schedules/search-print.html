@@ -59,7 +59,7 @@
 <div class="row collapse" id="printsched">
 	<div class="col-sm-12">
 		<form role="form" action="/schedules/printcenter/" method="post">
-		{% csrf_token %}
+			{% csrf_token %}
 		<div class="form-group">						
 			<label for="id_printcc-service">Channel*</label>
 				<select class="form-control" name="printcc-service" id="id_printcc-service">
