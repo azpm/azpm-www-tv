@@ -4,8 +4,9 @@
 
 {% for item in items %}
 {% with item.series as series %}
+{% spaceless %}
 <!-- SCHEDULES -->
-	<section id="schedules">
+<section id="schedules">
 		<div class="container-fluid">
 			<div class="row">				
 				<div class="col-lg-12">
@@ -85,4 +86,5 @@
 			</div>
 		</div>
 </section>
+{% endspaceless %}
 {% endblock %}
