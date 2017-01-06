@@ -50,7 +50,6 @@
 									Episode					
 								</div>
 							</div>
-
 							{% for air in item.airing %}
 							<div class="row schedlistline">
 								<div class="col-sm-3">
@@ -67,21 +66,25 @@
 								</div>
 							</div>
 							{% endfor %}
-{% endwith %}
-{% empty %}
-					<div class="row marginextratop">
-						<div class="col-sm-12">
-							<h3>There are no upcoming episodes of {{ series.name.strip }}</h3>
-						</div>
-					</div>
-{% endfor %}
-					<div class="row margintop">
-						<div class="col-sm-12">
-							<a href="#top">Back to Top</a>
 						</div>
 					</div>
 				</div>
-
+			</div>
+{% endwith %}
+{% empty %}
+<!-- SCHEDULES -->
+<section id="schedules">
+		<div class="container-fluid">
+			<div class="row marginextratop">
+				<div class="col-sm-12">
+					<h3>There are no upcoming episodes of {{ base_series.name.strip }}.</h3>
+				</div>
+			</div>
+{% endfor %}
+			<div class="row margintop">
+				<div class="col-sm-12">
+					<a href="#top">Back to Top</a>
+				</div>
 			</div>
 		</div>
 </section>
