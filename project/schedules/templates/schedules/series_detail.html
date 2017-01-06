@@ -26,6 +26,7 @@
 				<div class="col-sm-8 episode-info">
 					<h1>{{ series.name.strip }}</h1>
 					<p>{{ series.description.strip }}</p>
+{% endspaceless %}
 {% endwith %}
 {% endfor %}
 {% for item in items %}
@@ -89,5 +90,4 @@
 			</div>
 		</div>
 </section>
-{% endspaceless %}
 {% endblock %}
