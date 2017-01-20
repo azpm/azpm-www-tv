@@ -2,9 +2,6 @@
 
 {% block zone_one %}
 
-{% for item in items %}
-{% with item.series as series %}
-{% spaceless %}
 <!-- SCHEDULES -->
 <section id="schedules">
 		<div class="container-fluid">
@@ -26,11 +23,8 @@
 				<div class="col-sm-8 episode-info">
 					<h1>{{ series.name.strip }}</h1>
 					<p>{{ series.description.strip }}</p>
-{% endspaceless %}
-{% endwith %}
-{% endfor %}
-{% for item in items %}
-{% with item.series as series %}
+					{% for item in items %}
+					{% with item.series as series %}
 					<div class="row marginextratop">
 						<div class="col-sm-12">
 							<h3>Upcoming Episodes of {{ series.name.strip }}</h3>
@@ -70,23 +64,21 @@
 							{% endfor %}
 						</div>
 					</div>
+					{% endwith %}
+					{% empty %}
+					<div class="row marginextratop">
+						<div class="col-sm-12">
+							<h3>There are no upcoming episodes of {{ series.name.strip }}.</h3>
+						</div>
+					</div>
+					{% endfor %}
+					<div class="row margintop">
+						<div class="col-sm-12">
+							<a href="#top">Back to Top</a>
+						</div>
+					</div>
 				</div>
-			</div>
-{% endwith %}
-{% empty %}
-<!-- SCHEDULES -->
-<section id="schedules">
-		<div class="container-fluid">
-			<div class="row marginextratop">
-				<div class="col-sm-12">
-					<h3>There are no upcoming episodes of {{ base_series.name.strip }}.</h3>
-				</div>
-			</div>
-{% endfor %}
-			<div class="row margintop">
-				<div class="col-sm-12">
-					<a href="#top">Back to Top</a>
-				</div>
+
 			</div>
 		</div>
 </section>
