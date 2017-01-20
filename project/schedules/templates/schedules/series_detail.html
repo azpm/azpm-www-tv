@@ -18,11 +18,19 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					{% if series.html %} {{ series.html|safe}} {% else %}  &nbsp; {% endif %}
+					{% if base_series.html %} {{ base_series.html|safe}} {% else %}<div class="row">
+						<div class="col-sm-12 text-center">
+							<a href="http://rescorp.org/" target="_blank"><img src="https://media.azpm.org/master/image/2017/1/5/element/rescorp-300.png" class="img-responsive bordergray" style="margin:0px auto 10px auto;"></a>
+							<span class="support-message">
+								Supported by <a href="http://rescorp.org/" target="_blank">The Research Corporation for Science Advancement</a>
+							</span>
+						</div>
+					</div>
+				{% endif %}
 				</div>
 				<div class="col-sm-8 episode-info">
-					<h1>{{ series.name.strip }}</h1>
-					<p>{{ series.description.strip }}</p>
+					<h1>{{ base_series.name.strip }}</h1>
+					<p>{{ base_series.description.strip }}</p>
 					{% for item in items %}
 					{% with item.series as series %}
 					<div class="row marginextratop">
