@@ -31,11 +31,11 @@
 					{% for set in primetime %}{% if set.airing %}
 					<div class="row{% if not forloop.first %} marginextratop{% endif %}">
 						<div class="col-sm-8">
-							<h2>{{ set.service.name }} Tonight</h2>
+							<h2>{{ set.service.name }} for {{ idealised_day|date:"F j, Y" }} </h2>
 						</div>
 						<div class="col-sm-4">
 							<div class="daysched">
-								<a href="{% url channel-today set.service.keyname %}">Daytime Schedule</a>
+								<a href="{% url channel-today set.service.keyname day.year,day.month,day.day %}">Daytime Schedule</a>
 							</div>	
 						</div>
 					</div>					
