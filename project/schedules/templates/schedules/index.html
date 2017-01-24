@@ -35,7 +35,7 @@
 						</div>
 						<div class="col-sm-4">
 							<div class="daysched">
-								<a href="{% url channel-today set.service.keyname day.year,day.month,day.day %}">Daytime Schedule</a>
+								<a href="https://tv.azpm.org/schedules/{{ set.service.keyname }}/{{ idealised_day|date:"Y" }}/{{ idealised_day|date:"m" }}/{{ idealised_day|date:"d" }}">Daytime Schedule</a>
 							</div>	
 						</div>
 					</div>					
