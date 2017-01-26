@@ -1,17 +1,19 @@
 {% load scheduling %}
 {% for block in calendars %}
 					<div class="row">
-						<div class="col-sm-12">
+						<div class="col-sm-12" style="margin-left:-10px;">
 							<a class="btn btn-primary btn-block hideshbtn" data-toggle="collapse" data-target="#datesched" aria-expanded="false"><i class="fa fa-calendar" aria-hidden="true"></i><i class="fa fa-arrow-circle-o-up"></i> Schedules by Date</a>
 						</div>
 					</div>
 					<div class="row collapse in" id="datesched">
 						<div class="col-sm-12">
-							<table class="schedule-calendar">
+							<div class="table-responsive">
+							<table class="schedule-calendar table">
 								<tr>
-									<td class="calendar-month" colspan="7">{{ block.day|date:"F, Y" }}</td>
+									<td class="calendar-month" colspan="8">{{ block.day|date:"F, Y" }}</td>
 								</tr>
 								<tr class="weekdays">
+									<td>&nbsp;</td>
 									<td>S</td>
 									<td>M</td>
 									<td>T</td>
@@ -28,7 +30,7 @@
 											{{ day|date:"j" }}{% endif %}{% else %}&nbsp;{% endifequal %}
 									</td>{% endfor %}
 							</tr>{% endfor %}
-						</table>{% endfor %}
-
+							</table>{% endfor %}
+							</div>
 						</div>
 					</div>
