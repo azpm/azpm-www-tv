@@ -1,5 +1,3 @@
-{% load scheduling %}
-{% for block in calendars %}
 					<div class="row">
 						<div class="col-sm-12">
 							<a class="btn btn-primary btn-block hideshbtn" data-toggle="collapse" data-target="#datesched" aria-expanded="false"><i class="fa fa-calendar" aria-hidden="true"></i><i class="fa fa-arrow-circle-o-up"></i> Schedules by Date</a>
@@ -7,30 +5,31 @@
 					</div>
 					<div class="row collapse in" id="datesched">
 						<div class="col-sm-12">
+							{% load scheduling %}{% for block in calendars %}
 							<div class="table-responsive">
-							<table class="schedule-calendar table">
-								<tr>
-									<td class="calendar-month" colspan="8">{{ block.day|date:"F, Y" }}</td>
-								</tr>
-								<tr class="weekdays">
-									<td>&nbsp;</td>
-									<td>S</td>
-									<td>M</td>
-									<td>T</td>
-									<td>W</td>
-									<td>Th</td>
-									<td>F</td>
-									<td>S</td>
-								</tr>
-							{% for weeks in block.calendar %}{% ifequal weeks week %}
-							<tr class="calendar-selected-week">{% else %}<tr class="calendar-week">{% endifequal %}
-							<td class="week-select">{% if weeks.0 <= max_days %}<a href="{% url channel-week-glance service.keyname,weeks.0.year,weeks.0.month,weeks.0.day %}" title="Weekly Schedule"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>{% endif %}</td>{% for day in weeks %}
-									<td class="{% proper_td_class block day idealised_day %}">{% ifequal day.month block.day.month %}{% if day <= max_days %}
-											<a href="{% url channel-date service.keyname,day.year,day.month,day.day %}">{{ day|date:"j" }}</a>{% else %}
-											{{ day|date:"j" }}{% endif %}{% else %}&nbsp;{% endifequal %}
-									</td>{% endfor %}
-							</tr>{% endfor %}
-							</table>
+								<table class="schedule-calendar table">
+									<tr>
+										<td class="calendar-month" colspan="8">{{ block.day|date:"F, Y" }}</td>
+									</tr>
+									<tr class="weekdays">
+										<td>&nbsp;</td>
+										<td>S</td>
+										<td>M</td>
+										<td>T</td>
+										<td>W</td>
+										<td>Th</td>
+										<td>F</td>
+										<td>S</td>
+									</tr>
+								{% for weeks in block.calendar %}{% ifequal weeks week %}
+								<tr class="calendar-selected-week">{% else %}<tr class="calendar-week">{% endifequal %}
+								<td class="week-select">{% if weeks.0 <= max_days %}<a href="{% url channel-week-glance service.keyname,weeks.0.year,weeks.0.month,weeks.0.day %}" title="Weekly Schedule"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>{% endif %}</td>{% for day in weeks %}
+										<td class="{% proper_td_class block day idealised_day %}">{% ifequal day.month block.day.month %}{% if day <= max_days %}
+												<a href="{% url channel-date service.keyname,day.year,day.month,day.day %}">{{ day|date:"j" }}</a>{% else %}
+												{{ day|date:"j" }}{% endif %}{% else %}&nbsp;{% endifequal %}
+										</td>{% endfor %}
+								</tr>{% endfor %}
+								</table>
 							</div>{% endfor %}
 						</div>
 					</div>
