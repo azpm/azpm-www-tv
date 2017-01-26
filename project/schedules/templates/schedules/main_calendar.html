@@ -5,9 +5,10 @@
 </div>
 
 <div class="row collapse in" id="datesched">
-	<div class="col-sm-12" style="margin-left:-10px;">
+	<div class="col-sm-12">
 		{% load scheduling %}{% for block in calendars %}
-		<table class="schedule-calendar">
+		<div class="table-responsive">
+		<table class="schedule-calendar table">
 			<tr>
 				<td class="calendar-month" colspan="7">{{ block.day|date:"F, Y" }}</td>
 			</tr>
@@ -26,6 +27,7 @@
 					{% else %}&nbsp;{% endifequal %}</td>{% endfor %}
 				</tr>{% endfor %}
 		</table>
+		</div>
 		{% endfor %}
 	</div>
 </div>
