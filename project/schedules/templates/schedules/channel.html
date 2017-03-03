@@ -45,7 +45,7 @@
 						</div>
 						<div class="col-sm-9">
 							<a name="{{ air.time|time:'f.a' }}" href="{% url episode-detail episode.id %}">{{ episode.series.name.strip }}</a>
-							{% if episode.name %}{{ episode.name }}{% endif %}							
+							{% if episode.name and episode.name != "None" %}{{ episode.name }}{% endif %}							
 						</div>
 					</div>
 					{% endwith %}{% endfor %}
