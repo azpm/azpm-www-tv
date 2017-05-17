@@ -1,5 +1,22 @@
 {% extends "schedules/base.html" %}
 
+{% block open-graph %}
+	<meta name="description" content="Program descriptions and TV schedule listings for {{ base_series.name.strip }}">
+	<meta name="keywords" content="{{ base_series.name.strip }}, PBS 6 schedule, PBS Kids schedule, PBS 6 Plus schedule, pbs 6 tv schedule, Arizona PBS schedule">
+	
+	<meta property="og:title" content="{{ base_series.name.strip }} | TV Schedules - AZPM" />
+	<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+	<meta property="og:description" content="Program descriptions and TV schedule listings for {{ base_series.name.strip }}" />
+	<meta property="og:image" content="{% if base_series.image %}{{ base_series.image|safe }}{% else %}https://media.azpm.org/master/image/2017/5/17/ogimg/schedules-og.jpg{% endif %}" />
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@azpm">
+	<meta name="twitter:creator" content="@azpm">
+	<meta name="twitter:title" content="{{ base_series.name.strip }} | TV Schedules - AZPM">
+	<meta name="twitter:description" content="Program descriptions and schedule listings for {{ base_series.name.strip }}">
+	<meta name="twitter:image" content="{% if base_series.image %}{{ base_series.image|safe }}{% else %}https://media.azpm.org/master/image/2017/5/17/ogimg/schedules-og.jpg{% endif %}">
+{% endblock %}
+
 {% block zone_one %}
 
 <!-- SCHEDULES -->
