@@ -18,15 +18,20 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					{% if base_series.html %} {{ base_series.html|safe}} {% else %}<div class="row">
+					{% if base_series.image %}
+					<div class="row">
 						<div class="col-sm-12 text-center">
-							<a href="http://rescorp.org/" target="_blank"><img src="https://media.azpm.org/master/image/2017/1/5/element/rescorp-300.png" class="img-responsive bordergray" style="margin:0px auto 10px auto;"></a>
-							<span class="support-message">
-								Supported by <a href="http://rescorp.org/" target="_blank">The Research Corporation for Science Advancement</a>
-							</span>
+							 <img src="{{ base_series.image|safe }}" class="img-responsive" style="margin:0px auto 10px auto;"></a>
 						</div>
 					</div>
-				{% endif %}
+					{% endif %}					
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							{% if base_series.html %}{{ base_series.html|safe}}{% else %}
+							<a href="http://www.pbs.org/passport/videos/" target="_blank"><img src="https://media.azpm.org/master/doc/passport.jpg" class="img-responsive bordergray" style="margin:0px auto 10px auto;" alt="Watch your favorite PBS shows online with AZPM Passport"></a>
+							{% endif %}
+						</div>
+					</div>					
 				</div>
 				<div class="col-sm-8 episode-info">
 					<h1>{{ base_series.name.strip }}</h1>
