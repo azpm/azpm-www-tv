@@ -1,5 +1,22 @@
 {% extends "schedules/base.html" %}
 
+{% block open-graph %}
+	<meta name="description" content="Program descriptions and TV schedule listings for {{ base_series.name.strip }}">
+	<meta name="keywords" content="{{ base_series.name.strip }}, PBS 6 schedule, PBS Kids schedule, PBS 6 Plus schedule, pbs 6 tv schedule, Arizona PBS schedule">
+	
+	<meta property="og:title" content="{{ base_series.name.strip }} | TV Schedules - AZPM" />
+	<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+	<meta property="og:description" content="Program descriptions and TV schedule listings for {{ base_series.name.strip }}" />
+	<meta property="og:image" content="{% if base_series.image %}{{ base_series.image|safe }}{% else %}https://media.azpm.org/master/image/2017/5/17/ogimg/schedules-og.jpg{% endif %}" />
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@azpm">
+	<meta name="twitter:creator" content="@azpm">
+	<meta name="twitter:title" content="{{ base_series.name.strip }} | TV Schedules - AZPM">
+	<meta name="twitter:description" content="Program descriptions and schedule listings for {{ base_series.name.strip }}">
+	<meta name="twitter:image" content="{% if base_series.image %}{{ base_series.image|safe }}{% else %}https://media.azpm.org/master/image/2017/5/17/ogimg/schedules-og.jpg{% endif %}">
+{% endblock %}
+
 {% block zone_one %}
 
 <!-- SCHEDULES -->
@@ -18,15 +35,20 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					{% if base_series.html %} {{ base_series.html|safe}} {% else %}<div class="row">
+					{% if base_series.image %}
+					<div class="row">
 						<div class="col-sm-12 text-center">
-							<a href="http://rescorp.org/" target="_blank"><img src="https://media.azpm.org/master/image/2017/1/5/element/rescorp-300.png" class="img-responsive bordergray" style="margin:0px auto 10px auto;"></a>
-							<span class="support-message">
-								Supported by <a href="http://rescorp.org/" target="_blank">The Research Corporation for Science Advancement</a>
-							</span>
+							 <img src="{{ base_series.image|safe }}" class="img-responsive" style="margin:0px auto 10px auto;"></a>
 						</div>
 					</div>
-				{% endif %}
+					{% endif %}					
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							{% if base_series.html %}{{ base_series.html|safe}}{% else %}
+							<a href="http://www.pbs.org/passport/videos/" target="_blank"><img src="https://media.azpm.org/master/doc/passport.jpg" class="img-responsive bordergray" style="margin:0px auto 10px auto;" alt="Watch your favorite PBS shows online with AZPM Passport"></a>
+							{% endif %}
+						</div>
+					</div>					
 				</div>
 				<div class="col-sm-8 episode-info">
 					<h1>{{ base_series.name.strip }}</h1>
