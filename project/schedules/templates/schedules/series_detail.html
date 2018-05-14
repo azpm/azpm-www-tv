@@ -44,7 +44,7 @@
 					{% endif %}					
 					<div class="row">
 						<div class="col-sm-12 text-center">
-							{% if base_series.html %}{{ base_series.html|safe}}{% else %}
+							{% if base_series.html %}{{ base_series.html|safe }}{% else %}
 							<a href="http://www.pbs.org/passport/videos/" target="_blank"><img src="https://media.azpm.org/master/doc/passport.jpg" class="img-responsive bordergray" style="margin:0px auto 10px auto;" alt="Watch your favorite PBS shows online with AZPM Passport"></a>
 							{% endif %}
 						</div>
@@ -57,7 +57,12 @@
 					{% with item.series as series %}
 					<div class="row marginextratop">
 						<div class="col-sm-12">
+							{% if series.nola == "MAST" %}<a name="{{ series.nola }}"title="{{ series.name.strip }}"></a><h3>{{ series.name.strip }}</h3>
+							{{ series.description.strip }}
+							{{ series.html|safe }}
+							{% else %}
 							<h3>Upcoming Episodes of {{ series.name.strip }}</h3>
+							{% endif %}
 						</div>
 					</div>
 					<div class="row marginbottom" style="margin-top:15px;">
