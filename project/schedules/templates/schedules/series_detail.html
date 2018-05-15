@@ -58,7 +58,9 @@
 					<div class="row marginextratop">
 						<div class="col-sm-12">
 							{% if "MAST" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h3>{{ series.name.strip }}</h3>
+							<span class="masterpiece altfont">
 							{{ series.description.strip }}
+							</span>
 							{{ series.html|safe }}
 							{% else %}
 							<h3>Upcoming Episodes of {{ series.name.strip }}</h3>
