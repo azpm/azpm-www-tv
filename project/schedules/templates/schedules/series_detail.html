@@ -57,7 +57,7 @@
 					{% with item.series as series %}
 					<div class="row marginextratop">
 						<div class="col-sm-12">
-							{% if series.nola == "MAST" %}<a name="{{ series.nola }}"title="{{ series.name.strip }}"></a><h3>{{ series.name.strip }}</h3>
+							{% if "MAST" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h3>{{ series.name.strip }}</h3>
 							{{ series.description.strip }}
 							{{ series.html|safe }}
 							{% else %}
