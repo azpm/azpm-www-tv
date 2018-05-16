@@ -44,8 +44,13 @@
 							{{ air.time|time:"f a" }}					
 						</div>
 						<div class="col-sm-9">
+							{% if episode.series.html %}
+							<a name="{{ air.time|time:'f.a' }}" href="{% url episode-detail episode.id %}" class="avpassportlink">{{ episode.series.name.strip }}</a>
+							{% if episode.name and episode.name != "None" %}{{ episode.name }}{% endif %}<a href="{{ episode.series.html }}" class="avpassporticon" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ episode.series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="Watch online with AZPM Passport" title="Watch online with AZPM Passport"></a><br/>
+							{% else %}
 							<a name="{{ air.time|time:'f.a' }}" href="{% url episode-detail episode.id %}">{{ episode.series.name.strip }}</a>
-							{% if episode.name and episode.name != "None" %}{{ episode.name }}{% endif %}							
+							{% if episode.name and episode.name != "None" %}{{ episode.name }}{% endif %}
+							{% endif %}
 						</div>
 					</div>
 					{% endwith %}{% endfor %}
