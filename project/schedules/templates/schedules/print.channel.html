@@ -1,10 +1,11 @@
 {% extends "ultralaser/base.printable.html" %}
 
 {% block open-graph %}
-    <meta property="og:title" content="TV Schedules - Print Center - Arizona Public Media" />
+    <meta property="og:title" content="TV Schedules - Print - Arizona Public Media" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     <meta property="og:description" content="{{ cms_page.title }}" />
-    <meta property="og:image" content="{{ cms_page.theme.banner.url }}" />
+    <meta property="og:image" content="{{ cms_page.theme.banner.url }}" />	
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% load protrack %}
@@ -14,6 +15,7 @@
         color: #000000;
         background: #FFFFFF;
         margin: 0px;
+		font-family:'Source Sans Pro', sans-serif;
     }
 
     a:link, a:visited {
@@ -66,16 +68,16 @@
 <a href="{% url schedules-index %}">Return to Schedules</a>
 </form>
 {% if results %}
-<h1>{{ results.service.name }}</h1>
+<h1>{{ results.service.name }} - Printable Schedule</h1>
 <h2>{{ results.start_date|date:"F jS" }} {%  ifnotequal results.start_date results.end_date %}to {{ results.end_date|date:"F jS"}}{% endifnotequal %} {% if results.primetime %}Primetime Listings Only{% endif %}</h2>
 {% regroup results.airing by date as airing_list %}
 {% for item in airing_list %}
     <h3>{{ item.grouper|date:"l, F jS" }}</h3>
-    <table style="width:100%; font-weight:bold;">
+    <table style="width:100%;" cellpadding="6">
         {% for showing in item.list %}
         <tr>
-            <td style="width:85px;">{{ showing.time|time:"" }} </td>
-            <td>{{ showing.airing.series.name }} {% if showing.airing.title %}&mdash; {{ showing.airing.title }}{% endif %}<br/><blockquote>{% filter truncatewords:"30" %}{% firstof showing.airing.short_description showing.airing.description "No Description" %}{% endfilter %}</blockquote></td>
+            <td style="width:85px;" >{{ showing.time|time:"" }} </td>
+            <td><strong>{{ showing.airing.series.name }}</strong> {% if showing.airing.title %}&mdash; <em>{{ showing.airing.title }}</em>{% endif %}</td>
         </tr>
         {% endfor %}
     </table>
