@@ -53,8 +53,13 @@
 					</div>					
 				</div>
 				<div class="col-sm-8 episode-info">
+					{% if "MAST" in series.nola %}
+					<h1>Masterpiece</h1>
+					<p>Produced by <em>PBS</em>’s flagship station — <em>WGBH</em>/Boston — MASTERPIECE has remained steadfast in our commitment to bringing the best in drama to American public television audiences.</p>
+					{% else %}
 					<h1>{{ base_series.name.strip }}</h1>
 					<p>{{ base_series.description.strip }}</p>
+					{% endif %}
 					{% for item in items %}
 					{% with item.series as series %}
 					<div class="row marginextratop">
@@ -71,7 +76,7 @@
 							{{ series.description.strip }}
 							</span>
 							{% if series.html %}
-							<a href="{{ series.html }}" title="Stream this show on AZPM Passport" class="passbutton" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');" style="margin-bottom:5px;"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream on AZPM Passport</a>
+							<a href="{{ series.html }}" title="Stream this show on AZPM Passport" class="passbutton" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');" style="margin-bottom:5px;max-width:448px;"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream on AZPM Passport</a>
 							{% endif %}
 							{% elif "AMMS" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h3>{{ series.name.strip }}</h3>
 							<span class="masterpiece">
