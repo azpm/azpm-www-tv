@@ -5,8 +5,8 @@
       <Program>
           <Date></Date>
           <Time></Time>
-          <Title1>{{ item.episode.season.series.name }} </Title1>
-          <Title2>{{ item.episode.title }} </Title2>
+          <Title1>{{ item.airing.episode.season.series.name }} </Title1>
+          <Title2>{{ item.airing.episode.title }} </Title2>
       </Program>
       {%  endfor %}
   </Channel>
