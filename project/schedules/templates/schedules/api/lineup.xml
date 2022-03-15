@@ -1,5 +1,15 @@
-CHANNEL {{ data.results.service }}
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Schedule>
+  <Channel Name="{{ data.results.service }}">
+      {%  for item in data.results.airing %}
+      <Program>
+          <object>{{  item }}</object>
+          <Date></Date>
+          <Time></Time>
+          <Title1> </Title1>
+          <Title2></Title2>
+      </Program>
+      {%  endfor %}
+  </Channel>
+</Schedule>
 
-{% for item in data.results.airing %}
-    {{ item }}
-{% endfor %}
