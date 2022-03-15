@@ -12,3 +12,16 @@
       {%  endfor %}
   </Channel>
 </Schedule>
+
+{% regroup data.results.airing by date as airing_list %}
+{% for item in airing_list %}
+    <h3>{{ item.grouper|date:"l, F jS" }}</h3>
+    <table style="width:100%;" cellpadding="6">
+        {% for showing in item.list %}
+        <tr>
+            <td style="width:85px;" >{{ showing.time|time:"" }} </td>
+            <td><strong>{{ showing.airing.series.name }}</strong> {% if showing.airing.title %}&mdash; <em>{{ showing.airing.title }}</em>{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
