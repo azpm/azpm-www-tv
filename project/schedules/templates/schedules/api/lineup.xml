@@ -3,11 +3,10 @@
   <Channel Name="{{ data.results.service }}">
       {%  for item in data.results.airing %}
       <Program>
-          <object>{{  item }}</object>
           <Date></Date>
           <Time></Time>
-          <Title1> </Title1>
-          <Title2></Title2>
+          <Title1>{{ item.series.name }} </Title1>
+          <Title2>{{ item.title }}</Title2>
       </Program>
       {%  endfor %}
   </Channel>
