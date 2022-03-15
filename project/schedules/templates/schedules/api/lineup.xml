@@ -3,13 +3,15 @@
   <Channel Name="{{ data.results.service.name }}">
     {% regroup data.results.airing by date as airing_list %}
     {% for item in airing_list %}
-      <Program>
-        <Date>{{ item.grouper|date:"m/d/y" }}</Date>
-        <Time>{{ item.grouper|date:"H:i" }}</Time>
-
         {% for showing in item.list %}
+      <Program>
+        <Date>{{ item.start|date:"m/d/y" }}</Date>
+        <Time>{{ item.start|date:"H:i" }}</Time>
+
+
         <Title1>{{ showing.airing.series.name }} {{ showing.start }}</Title1>
         <Title2>{% if showing.airing.title %}{{ showing.airing.title }} {% endif %} </Title2>
+            {%  endfor %}
         {% endfor %}
       </Program>
     {% endfor %}
