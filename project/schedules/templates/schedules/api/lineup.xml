@@ -8,7 +8,7 @@
                 <Date>{{ showing.start|date:"m/d/Y" }}</Date>
                 <Time>{{ showing.start|date:"Hi" }}</Time>
                 <Title1>{{ showing.airing.series.name }}</Title1>
-                <Title2>{{ showing.airing.name }}</Title2>
+                <Title2>{%  if showing.airing.name %}{{ showing.airing.name }}{%  endif %}</Title2>
             </Program>>
         {%  endfor %}
     {% endfor %}
