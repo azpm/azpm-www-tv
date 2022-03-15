@@ -8,7 +8,7 @@
         <Time>{{ item.grouper|date:"H:i" }}</Time>
 
         {% for showing in item.list %}
-        <Title1>{{ showing.airing.series.name }}</Title1>
+        <Title1>{{ showing.airing.series.name }} {{ showing.start }}</Title1>
         <Title2>{% if showing.airing.title %}{{ showing.airing.title }} {% endif %} </Title2>
         {% endfor %}
       </Program>
