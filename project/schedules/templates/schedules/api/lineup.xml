@@ -4,8 +4,8 @@
       {%  for item in data.results.airing %}
       <Program>
       {{  item }}
-          <Date>{{ item.start|date:'Y-m-D' }}</Date>
-          <Time>{{ item.start|date:'H' }}</Time>
+          <Date>{{ item.start|date:'d/m/y' }}</Date>
+          <Time>{{ item.start|date:'H:i' }}</Time>
           <Title1>{{ item.airing.episode.season.series.name }} </Title1>
           <Title2>{{ item.airing.episode.title }} </Title2>
       </Program>
