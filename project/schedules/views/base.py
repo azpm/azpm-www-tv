@@ -656,7 +656,11 @@ class API(TemplateView):
 
             date_range = [start_date, end_date]
 
-            airs = Air.objects.filter(service=service, date__range=date_range).distinct()
+            desired_channels = [self.svc]
+
+            services = get_list_or_404(Service, active=True, keyname__in=desired_channels)
+
+            airs = Air.objects.filter(service=services[0], date__range=date_range).distinct()
 
             results = {
                 'service': service,
