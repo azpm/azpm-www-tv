@@ -656,7 +656,7 @@ class API(TemplateView):
 
             date_range = [start_date, end_date]
 
-            airs = EpisodeAir.objects.filter(service=service, date__range=date_range)
+            airs = Air.objects.filter(service=service, date__range=date_range).distinct()
 
             results = {
                 'service': service,
