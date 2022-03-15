@@ -676,6 +676,9 @@ class API(TemplateView):
         if self.tpl == "base.htm":
             return "schedules/api/%s" % self.tpl
 
+        if self.tpl == "lineup.xml":
+            return "schedules/api/%s" % self.tpl
+
         tpl_arg = self.tpl
         tpl_arg += str(randint(1,6))
         tpl_arg += '.motn'
