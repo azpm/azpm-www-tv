@@ -1,0 +1,5 @@
+CHANNEL {{ data.results.service }}
+
+{% for item in data.results.airing %}
+    {{ item }}
+{% endfor %}
