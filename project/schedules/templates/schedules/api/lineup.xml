@@ -3,6 +3,7 @@
   <Channel Name="{{ data.results.service }}">
       {%  for item in data.results.airing %}
       <Program>
+      {{  item }}
           <Date></Date>
           <Time></Time>
           <Title1>{{ item.airing.episode.season.series.name }} </Title1>
