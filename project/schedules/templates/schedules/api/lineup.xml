@@ -28,4 +28,4 @@
 							{% endif %}
 						</div>
 					</div>
-{% endwith %}
+{% endwith %}{% endfor %}
