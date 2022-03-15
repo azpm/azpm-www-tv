@@ -5,9 +5,9 @@
     {% for item in airing_list %}
         {% for showing in item.list %}
             <Program>
-                <Date>{{ item.start|date:"m/d/y" }}</Date>
-                <Time>{{ item.start|date:"H:i" }}</Time>
-                <Title1>{{ showing.airing.series.name }} {{ showing.start }}</Title1>
+                <Date>{{ showing.start|date:"m/d/y" }}</Date>
+                <Time>{{ showing.start|date:"H:i" }}</Time>
+                <Title1>{{ showing.airing.series.name }}</Title1>
                 <Title2>{% if showing.airing.title %}{{ showing.airing.title }} {% endif %} </Title2>
             </Program>>
         {%  endfor %}
