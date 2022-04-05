@@ -71,27 +71,27 @@
 								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							</div>
 							{% endif %}							
-							<span class="masterpiece">
+							<div class="masterpiece">
 							{{ series.description.strip }}
-							</span>
+							</div>
 							{% elif "AMEX" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h3>{{ series.name.strip }}</h3>
 							{% if series.html %}
 							<div class="masterpiecepass">
 								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							</div>
 							{% endif %}
-							<span class="masterpiece">
+							<div class="masterpiece">
 							{{ series.description.strip }}
-							</span>
+							</div>
 							{% elif "AMMS" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h3>{{ series.name.strip }}</h3>
 							{% if series.html %}
 							<div class="masterpiecepass">
 								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							</div>
 							{% endif %}
-							<span class="masterpiece">
+							<div class="masterpiece">
 							{{ series.description.strip }}
-							</span>
+							</div>
 							{% else %}
 							<h3>Upcoming Episodes of {{ series.name.strip }}</h3>
 							{% endif %}
