@@ -16,7 +16,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-8 episode-info">
-					<h1><a href="{% url series-by-nola episode.series.nola %}" style="margin-right:8px;">{{ episode.season.series.name.strip }}</a>{% if episode.season.series.html %}<a href="{{ episode.season.series.html }}" style="display:inline-block;" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ episode.season.series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="Watch online with AZPM Passport" title="Watch online with AZPM Passport" style="height:36px;"></a>{% endif %}</h1>
+					<h1>{% if series.nola %}<a href="{% url series-by-nola episode.series.nola %}" style="margin-right:8px;">{% endif %}{{ episode.season.series.name.strip }}{% if series.nola %}</a>{% endif %}{% if episode.season.series.html %}<a href="{{ episode.season.series.html }}" style="display:inline-block;" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ episode.season.series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="Watch online with AZPM Passport" title="Watch online with AZPM Passport" style="height:36px;"></a>{% endif %}</h1>
 						{% if episode.name and episode.name != "None"%}<h3>{{ episode.name|title }}</h3>{% endif %}
 						<span>{% if episode.season.number %}Season {{ episode.season.number }},{% endif %} Episode {{ episode.number }} of {{ episode.season.total }} </span>
 						{% if not episode.description %}
@@ -32,7 +32,7 @@
 						{% endif %}
 						<div class="row margintop marginbottom">
 							<div class="col-sm-12">
-								<i class="fa fa-caret-right" aria-hidden="true"></i> <a href="{% url series-by-nola episode.series.nola %}">More From this Series</a>
+								{% if series.nola %}<i class="fa fa-caret-right" aria-hidden="true"></i> <a href="{% url series-by-nola episode.series.nola %}">More From this Series</a>{% endif %}
 							</div>
 						</div>
 				</div>
