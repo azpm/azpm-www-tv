@@ -45,7 +45,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							{% if base_series.html %}
-							<a href="{{ base_series.html }}" title="Stream this show with AZPM Passport" class="passbutton" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ base_series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream now with AZPM Passport</a>
+							<a href="{{ base_series.html }}" title="Stream this show with AZPM Passport" class="passbutton" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ base_series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							{% else %}
 							<a href="http://www.pbs.org/passport/videos/" target="_blank"><img src="https://media.azpm.org/master/doc/passport.jpg" class="img-responsive bordergray" style="margin:0px auto 10px auto;" alt="Watch your favorite PBS shows online with AZPM Passport"></a>
 							{% endif %}
