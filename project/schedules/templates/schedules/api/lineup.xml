@@ -9,7 +9,7 @@
                 <Time>{{ showing.start|date:"Hi" }}</Time>
                 <Title1>{{ showing.airing.series.name }}</Title1>
                 <Title2>{%  if not showing.airing.name == "None" %}{{ showing.airing.name }}{%  endif %}</Title2>
-            </Program>>
+            </Program>
         {%  endfor %}
     {% endfor %}
   </Channel>
