@@ -518,21 +518,27 @@ class API(TemplateView):
     tpl = None
     the_date = None
     the_time = None
+    svc = None
 
     def get(self, request, *args, **kwargs):
         self.action = request.GET.get('action', None)
         get_datetime = request.GET.get('dt', None)
         self.tpl = request.GET.get('tpl', 'motnbase') # use default mothnbase if no other template specified
+        self.svc = request.GET.get('svc', None)
 
-        try:
-            self.the_date = datetime.strptime(get_datetime, u"%Y-%m-%d_%H.%M.%S")
-        except (ValueError, TypeError):
-            raise Http404("datetime in wrong format (dt=%Y-%m-%d_%H.%M.%S)")
+        if self.action == "billboard":
+            try:
+                self.the_date = datetime.strptime(get_datetime, u"%Y-%m-%d_%H.%M.%S")
+            except (ValueError, TypeError):
+                raise Http404("datetime in wrong format (dt=%Y-%m-%d_%H.%M.%S)")
 
-        if not self.action or not self.the_date:
-            raise Http404("API call wrong-- usage: /schedules/api/?action=billboard&dt=2010-05-01_21.00.00&tpl=base.htm")
+            if not self.the_date:
+                raise Http404("API call wrong-- usage: /schedules/api/?action=billboard&dt=2010-05-01_21.00.00&tpl=base.htm")
 
-        self.the_time = self.the_date.time()
+            self.the_time = self.the_date.time()
+
+        if not self.action:
+            raise Http404("API call wrong no action requested -- usage : /schedules/api/?action=ACTION")
 
         return super(API, self).get(request, *args, **kwargs)
 
@@ -643,6 +649,28 @@ class API(TemplateView):
                 else:
                     data[service.keyname] = this_service
 
+        if self.action == "schedulexml":
+            start_date = date.today()
+            end_date = start_date + timedelta(days=7)
+            service = self.svc
+
+            date_range = [start_date, end_date]
+
+            desired_channels = [self.svc]
+
+            services = get_list_or_404(Service, active=True, keyname__in=desired_channels)
+
+            airs = Air.objects.filter(service=services[0], date__range=date_range).distinct()
+
+            results = {
+                'service': service,
+                'start_date': start_date,
+                'end_date': end_date,
+                'airing': airs.order_by('start'),
+            }
+
+            data['results'] = results
+
         template_name = self.get_template_names()
 
         c.update({"data": data})
@@ -650,6 +678,9 @@ class API(TemplateView):
 
     def get_template_names(self):
         if self.tpl == "base.htm":
+            return "schedules/api/%s" % self.tpl
+
+        if self.tpl == "lineup.xml":
             return "schedules/api/%s" % self.tpl
 
         tpl_arg = self.tpl
