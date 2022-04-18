@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Schedule>
+  <Channel Name="{{ data.results.service }}">
+    {% regroup data.results.airing by date as airing_list %}
+    {% for item in airing_list %}
+        {% for showing in item.list %}
+            <Program>
+                <Date>{{ showing.start|date:"m/d/Y" }}</Date>
+                <Time>{{ showing.start|date:"Hi" }}</Time>
+                <Title1>{{ showing.airing.series.name }}</Title1>
+                <Title2>{%  if not showing.airing.name == "None" %}{{ showing.airing.name }}{%  endif %}</Title2>
+            </Program>
+        {%  endfor %}
+    {% endfor %}
+  </Channel>
+</Schedule>
+
