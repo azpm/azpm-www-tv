@@ -21,13 +21,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-3 marginbottom">
+				<div class="col-md-3 marginbottom">
 					{% include "schedules/search-print.html" %}
 					{% include "schedules/main_calendar.html" %}
 					{% include "schedules/underwriting.html" %}
 				</div>
 				
-				<div class="col-sm-9">
+				<div class="col-md-9">
 					{% for set in primetime %}{% if set.airing %}
 					<div class="row{% if not forloop.first %} marginextratop{% endif %}">
 						<div class="col-sm-8">
