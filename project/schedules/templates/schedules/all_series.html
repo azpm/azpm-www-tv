@@ -7,7 +7,7 @@
         <div class="content-fw">
             <div class="bt bt-grey">All TV Series</div>
             {% for single in series %}
-                <a href="{{ single.get_absolute_url }}" title="{{ single.name.strip }}">{{ single.name.strip }}</a><br />
+                <a href="{{ single.get_absolute_url }}" title="{{ single.name }}">{{ single.name }}</a><br />
             {% endfor %}
         </div>
     </div>

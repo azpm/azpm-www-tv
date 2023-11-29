@@ -27,7 +27,7 @@
 					<span class="top-tag-row">
 						<ol class="breadcrumb" style="margin-bottom: 5px;">
 						  <li><a href="https://tv.azpm.org/schedules/">TV Schedules</a></li>
-						  <li class="active">{{ base_series.name.strip }}</li>
+						  <li class="active">{{ base_series.name }}</li>
 						</ol>
 						<a name="top"></a>
 					</span>					
@@ -45,7 +45,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							{% if base_series.html %}
-							<a href="{{ base_series.html }}" title="Stream this show with AZPM Passport" class="passbutton" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ base_series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
+							<a href="{{ base_series.html }}" title="Stream this show with AZPM Passport" class="passbutton"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							{% else %}
 							<a href="http://www.pbs.org/passport/videos/" target="_blank"><img src="https://media.azpm.org/master/doc/passport.jpg" class="img-responsive bordergray" style="margin:0px auto 10px auto;" alt="Watch your favorite PBS shows online with AZPM Passport"></a>
 							{% endif %}
@@ -65,10 +65,10 @@
 					{% with item.series as series %}
 					<div class="row marginextratop">
 						<div class="col-sm-12">
-							{% if "MAST" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h2>{{ series.name.strip }}</h2>
+							{% if "MAST" in series.nola %}<a name="{{ series.name }}"  title="{{ series.name }}"></a><h2>{{ series.name }}</h2>
 							{% if series.html %}
 							<div class="masterpiecepass">
-								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
+								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							</div>
 							{% endif %}							
 							<div class="masterpiece">
@@ -77,23 +77,23 @@
 							{% elif "AMEX" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h2>{{ series.name.strip }}</h2>
 							{% if series.html %}
 							<div class="masterpiecepass">
-								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
+								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							</div>
 							{% endif %}
 							<div class="masterpiece">
 							{{ series.description.strip }}
 							</div>
-							{% elif "AMMS" in series.nola %}<a name="{{ series.name.strip }}"  title="{{ series.name.strip }}"></a><h2>{{ series.name.strip }}</h2>
+							{% elif "AMMS" in series.nola %}<a name="{{ series.name }}"  title="{{ series.name }}"></a><h2>{{ series.name }}</h2>
 							{% if series.html %}
 							<div class="masterpiecepass">
-								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport" onclick="ga('send', 'event', 'Passport Block', 'Watch from TV Schedule', '{{ series.name.strip }}');"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
+								<a href="{{ series.html }}" title="Stream this show now with AZPM Passport"><img src="https://media.azpm.org/master/image/2018/4/19/element/pass-sm-t.png" alt="AZPM Passport">Stream with AZPM Passport</a>
 							</div>
 							{% endif %}
 							<div class="masterpiece">
-							{{ series.description.strip }}
+							{{ series.description }}
 							</div>
 							{% else %}
-							<h3>Upcoming Episodes of {{ series.name.strip }}</h3>
+							<h3>Upcoming Episodes of {{ series.name }}</h3>
 							{% endif %}
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 					{% empty %}
 					<div class="row marginextratop">
 						<div class="col-sm-12">
-							<h3>There are no upcoming episodes of {{ base_series.name.strip }}.</h3>
+							<h3>There are no upcoming episodes of {{ base_series.name }}.</h3>
 						</div>
 					</div>
 					{% endfor %}
