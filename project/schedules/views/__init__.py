@@ -1,7 +1,27 @@
-from .base import Index, ChannelView, ChannelWeek, AllSeries, SeriesAirs, EpisodeDetail, Search, PrintCenter, API
+from .base import (
+    Index,
+    ChannelView,
+    ChannelWeek,
+    AllSeries,
+    SeriesAirs,
+    EpisodeDetail,
+    Search,
+    PrintCenter,
+    API,
+)
 
 # alaises the class based views so we don't have to change url conf
-__all__ = ['schedules_main','channel','channel_week','episode_detail','series_air_list','all_series','search','api_handler','print_center']
+__all__ = [
+    "schedules_main",
+    "channel",
+    "channel_week",
+    "episode_detail",
+    "series_air_list",
+    "all_series",
+    "search",
+    "api_handler",
+    "print_center",
+]
 
 
 schedules_main = Index.as_view()
